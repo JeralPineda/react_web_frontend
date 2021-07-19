@@ -1,20 +1,29 @@
-import Admin from './pages/Admin';
-import SignIn from './pages/Admin/SignIn';
-import Home from './pages/Home';
-import Contact from './pages/Contact';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import routes from './routes/routes';
 
 import './App.scss';
 
 function App() {
    return (
-      <>
-         <h1>App</h1>
+      <Router>
+         <Switch>
+            {routes.map((route, index) => (
+               <RouteWithSubRoutes key={index} {...route} />
+            ))}
+         </Switch>
+      </Router>
+   );
+}
 
-         <Admin />
-         <SignIn />
-         <Home />
-         <Contact />
-      </>
+function RouteWithSubRoutes(route) {
+   console.log(route);
+   return (
+      <Route
+         path={route.path} //
+         exact={route.exact}
+         render={(props) => <route.component routes={route.routes} {...props} />}
+      />
    );
 }
 
