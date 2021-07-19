@@ -13,7 +13,7 @@ const LayoutBasic = ({ routes }) => {
 
          <Layout>
             <Content>
-               <LoadRouters routes={routes} />
+               <LoadRoutes routes={routes} />
             </Content>
 
             <Footer>Jeral Pineda</Footer>
@@ -22,7 +22,7 @@ const LayoutBasic = ({ routes }) => {
    );
 };
 
-function LoadRouters({ routes }) {
+function LoadRoutes({ routes }) {
    return (
       <Switch>
          {routes.map((route, index) => (

@@ -15,7 +15,7 @@ const LayoutAdmin = ({ routes }) => {
             <Header>Header</Header>
 
             <Content>
-               <LoadRouters routes={routes} />
+               <LoadRoutes routes={routes} />
             </Content>
 
             <Footer>Footer</Footer>
@@ -24,7 +24,7 @@ const LayoutAdmin = ({ routes }) => {
    );
 };
 
-function LoadRouters({ routes }) {
+function LoadRoutes({ routes }) {
    return (
       <Switch>
          {routes.map((route, index) => (
