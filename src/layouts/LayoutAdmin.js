@@ -12,11 +12,15 @@ const LayoutAdmin = ({ routes }) => {
 
    const [menuCollapsed, setMenuCollapsed] = useState(true);
 
+   const style = {
+      marginLeft: menuCollapsed ? '80px' : '200px',
+   };
+
    return (
       <Layout>
          <MenuSider menuCollapsed={menuCollapsed} />
 
-         <Layout className='layout-admin'>
+         <Layout className='layout-admin' style={style}>
             <Header className='layout-admin__header'>
                <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
             </Header>
