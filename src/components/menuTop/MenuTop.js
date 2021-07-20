@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 import JeralPineda from '../../assets/img/png/logo-white.png';
 
@@ -14,7 +15,9 @@ const MenuTop = ({ menuCollapsed, setMenuCollapsed }) => {
    return (
       <div className='menu-top'>
          <div className='menu-top__left'>
-            <img className='menu-top__left-logo' src={JeralPineda} alt='logo' />
+            <Link to={'/admin'}>
+               <img className='menu-top__left-logo' src={JeralPineda} alt='logo' />
+            </Link>
 
             <Button type='link' onClick={handleMenuCollapsed}>
                {menuCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
