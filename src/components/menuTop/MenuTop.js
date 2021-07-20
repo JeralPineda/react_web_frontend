@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { MenuUnfoldOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { MenuOutlined, PoweroffOutlined } from '@ant-design/icons';
 
 import JeralPineda from '../../assets/img/png/logo-white.png';
 
@@ -13,7 +13,7 @@ const MenuTop = () => {
             <img className='menu-top__left-logo' src={JeralPineda} alt='logo' />
 
             <Button type='link' onClick={() => console.log('click')}>
-               <MenuUnfoldOutlined />
+               <MenuOutlined />
             </Button>
          </div>
          <div className='menu-top__right'>
