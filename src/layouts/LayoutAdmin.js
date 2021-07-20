@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 
+import MenuTop from 'components/menuTop';
+
 import './LayoutAdmin.scss';
 
 const LayoutAdmin = ({ routes }) => {
@@ -11,7 +13,9 @@ const LayoutAdmin = ({ routes }) => {
       <Layout>
          {/* TODO: menu sider */}
          <Layout className='layout-admin'>
-            <Header className='layout-admin__header'>{/* TODO: menu top */}</Header>
+            <Header className='layout-admin__header'>
+               <MenuTop />
+            </Header>
 
             <Content className='layout-admin__content'>
                <LoadRoutes routes={routes} />
