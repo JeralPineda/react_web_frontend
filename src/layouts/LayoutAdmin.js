@@ -9,16 +9,15 @@ const LayoutAdmin = ({ routes }) => {
 
    return (
       <Layout>
-         <h2>Menu Sider Admin</h2>
+         {/* TODO: menu sider */}
+         <Layout className='layout-admin'>
+            <Header className='layout-admin__header'>{/* TODO: menu top */}</Header>
 
-         <Layout>
-            <Header>Header</Header>
-
-            <Content>
+            <Content className='layout-admin__content'>
                <LoadRoutes routes={routes} />
             </Content>
 
-            <Footer>Footer</Footer>
+            <Footer className='layout-admin__footer'>Footer</Footer>
          </Layout>
       </Layout>
    );
