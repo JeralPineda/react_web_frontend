@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import MenuTop from 'components/MenuTop';
 import MenuSider from 'components/MenuSider';
+import SignIn from 'pages/Admin/SignIn/SignIn';
 
 import './LayoutAdmin.scss';
 
@@ -15,6 +16,17 @@ const LayoutAdmin = ({ routes }) => {
    const style = {
       marginLeft: menuCollapsed ? '80px' : '200px',
    };
+
+   const user = null;
+
+   if (!user) {
+      return (
+         <>
+            <Route path='/admin/login' component={SignIn} />
+            <Redirect to='/admin/login' />
+         </>
+      );
+   }
 
    return (
       <Layout>
