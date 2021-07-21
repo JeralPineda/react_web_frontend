@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 
-import MenuTop from 'components/MenuTop';
-import MenuSider from 'components/MenuSider';
+import MenuTop from 'components/Admin/menuTop';
+import MenuSider from 'components/Admin/MenuSider';
 import SignIn from 'pages/Admin/SignIn/SignIn';
 
 import './LayoutAdmin.scss';
