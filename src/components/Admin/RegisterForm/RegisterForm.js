@@ -51,7 +51,7 @@ const RegisterForm = () => {
          <Form.Item>
             <Button
                htmlType='submit' //
-               className='register-form-button'
+               className='register-form__button'
             >
                Crear cuenta
             </Button>
