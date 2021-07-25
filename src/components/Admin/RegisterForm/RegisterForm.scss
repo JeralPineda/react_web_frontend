@@ -12,16 +12,22 @@
 
    &__input {
       border-radius: 5px;
+      padding: 0;
 
       .ant-input-prefix {
-         span {
-            font-size: 0em + 22px / $defaultFontSize;
+         position: absolute;
+         height: 100%;
+         margin-left: 10px;
+         z-index: 1;
+         .login-form__icono-input {
+            font-size: 0em +22px / $defaultFontSize;
          }
       }
 
       input {
          font-size: 0em + 20px / $defaultFontSize;
-         padding: 3px 3px 3px 6px !important;
+         padding: 10px 10px 10px 40px !important;
+         border: none;
 
          &:focus {
             border-color: $primary-color;
@@ -33,10 +39,10 @@
    &__button {
       width: 100%;
       border-radius: 5px;
-      background-color: $primary-color;
       font-size: 0em + 22px / $defaultFontSize;
+      background-color: $primary-color;
       color: $font-light;
-      height: 42px;
+      height: 50px;
 
       &:hover {
          background-color: $primary-color-hover;
@@ -46,6 +52,7 @@
       &:active {
          background-color: $primary-color;
          color: $font-light;
+         border: 0;
       }
    }
 }
