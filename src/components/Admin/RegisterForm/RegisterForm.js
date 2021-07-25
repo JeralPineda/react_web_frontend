@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -8,8 +8,36 @@ const RegisterForm = () => {
    const style = {
       color: 'rgba(0,0,0,0.25)',
    };
+
+   const [inputs, setInputs] = useState({
+      email: '',
+      password: '',
+      repeatPassword: '',
+      privacyPolicy: false,
+   });
+
+   const changeForm = (e) => {
+      //   diferenciar si es input o checkboxes
+      if (e.target.name === 'privacyPolicy') {
+         setInputs({
+            ...inputs,
+            [e.target.name]: e.target.checked,
+         });
+      } else {
+         setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value,
+         });
+      }
+   };
+
+   const register = (e) => {
+      e.preventDefault();
+      console.log(inputs);
+   };
+
    return (
-      <Form className='register-form'>
+      <Form className='register-form' onChange={changeForm} onSubmitCapture={register}>
          <Form.Item>
             <Input
                prefix={<UserOutlined style={style} />}
@@ -17,6 +45,7 @@ const RegisterForm = () => {
                name='email'
                placeholder='Correo'
                className='register-form__input'
+               value={inputs.email}
             />
          </Form.Item>
 
@@ -27,6 +56,7 @@ const RegisterForm = () => {
                name='password'
                placeholder='Contraseña'
                className='register-form__input'
+               value={inputs.password}
             />
          </Form.Item>
 
@@ -37,12 +67,14 @@ const RegisterForm = () => {
                name='repeatPassword'
                placeholder='Repetir contraseña'
                className='register-form__input'
+               value={inputs.repeatPassword}
             />
          </Form.Item>
 
          <Form.Item>
             <Checkbox
                name='privacyPolicy' //
+               checked={inputs.privacyPolicy}
             >
                He leído y acepto las politicas de privacidad.
             </Checkbox>
