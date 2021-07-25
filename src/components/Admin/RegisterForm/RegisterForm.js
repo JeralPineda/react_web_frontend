@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 import { emailValidation, minLengthValidation } from 'utils/formValidation';
@@ -67,14 +67,34 @@ const RegisterForm = () => {
 
    const register = (e) => {
       e.preventDefault();
-      console.log(formValid);
+
+      //   const { email, password, repeatPassword, privacyPolicy } = formValid;
+
+      const emailValue = inputs.email;
+      const passwordValue = inputs.password;
+      const repeatPasswordValue = inputs.repeatPassword;
+      const privacyPolicyValue = inputs.privacyPolicy;
+
+      if (!emailValue || !passwordValue || !repeatPasswordValue || !privacyPolicyValue) {
+         notification['error']({
+            message: 'Todos los campos son obligatorios',
+         });
+      } else {
+         if (passwordValue !== repeatPasswordValue) {
+            notification['error']({
+               message: 'Las contraseñas tienen que ser iguales',
+            });
+         } else {
+            //    TODO: conectar con el API y registrar el usuario
+         }
+      }
    };
 
    return (
       <Form className='register-form' onChange={changeForm} onSubmitCapture={register}>
          <Form.Item>
             <Input
-               prefix={<UserOutlined style={style} />}
+               prefix={<UserOutlined className='login-form__icon-input' style={style} />}
                type='email' //
                name='email'
                placeholder='Correo'
@@ -86,7 +106,7 @@ const RegisterForm = () => {
 
          <Form.Item>
             <Input
-               prefix={<LockOutlined style={style} />}
+               prefix={<LockOutlined className='login-form__icon-input' style={style} />}
                type='password' //
                name='password'
                placeholder='Contraseña'
@@ -98,7 +118,7 @@ const RegisterForm = () => {
 
          <Form.Item>
             <Input
-               prefix={<LockOutlined style={style} />}
+               prefix={<LockOutlined className='login-form__icon-input' style={style} />}
                type='password' //
                name='repeatPassword'
                placeholder='Repetir contraseña'
@@ -114,7 +134,7 @@ const RegisterForm = () => {
                onChange={inputVlidation}
                checked={inputs.privacyPolicy}
             >
-               He leído y acepto las politicas de privacidad.
+               He leído y acepto las políticas de privacidad.
             </Checkbox>
          </Form.Item>
 
