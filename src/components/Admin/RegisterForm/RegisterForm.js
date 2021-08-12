@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 import { emailValidation, minLengthValidation } from 'utils/formValidation';
+import { signUpApi } from 'api/user';
 
 import './RegisterForm.scss';
 
@@ -86,6 +87,7 @@ const RegisterForm = () => {
             });
          } else {
             //    TODO: conectar con el API y registrar el usuario
+            const result = signUpApi(inputs);
          }
       }
    };
