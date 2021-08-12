@@ -86,7 +86,7 @@ const RegisterForm = () => {
                message: 'Las contraseñas tienen que ser iguales',
             });
          } else {
-            //    TODO: conectar con el API y registrar el usuario
+            //  conectar con el API y registrar el usuario
             const result = signUpApi(inputs);
          }
       }
