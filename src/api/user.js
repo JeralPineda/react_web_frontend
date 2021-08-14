@@ -11,8 +11,24 @@ export const signUpApi = (data) => {
       },
    };
 
-   fetch(url, params).then((response) => {
-      //    return resp.json();
-      console.log(response);
-   });
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         if (result.user) {
+            return {
+               ok: true,
+               message: 'Usuario creado correctamente',
+            };
+         }
+
+         return { ok: false, message: result.msg };
+      })
+      .catch((err) => {
+         return {
+            ok: false,
+            message: err.message,
+         };
+      });
 };
