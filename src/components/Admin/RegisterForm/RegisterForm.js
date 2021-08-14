@@ -66,7 +66,7 @@ const RegisterForm = () => {
       }
    };
 
-   const register = (e) => {
+   const register = async (e) => {
       e.preventDefault();
 
       //   const { email, password, repeatPassword, privacyPolicy } = formValid;
@@ -87,7 +87,16 @@ const RegisterForm = () => {
             });
          } else {
             //  conectar con el API y registrar el usuario
-            const result = signUpApi(inputs);
+            const result = await signUpApi(inputs);
+            if (!result.ok) {
+               notification['error']({
+                  message: result.message,
+               });
+            } else {
+               notification['success']({
+                  message: result.message,
+               });
+            }
          }
       }
    };
