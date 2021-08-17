@@ -49,15 +49,7 @@ export const signIn = (data) => {
          return response.json();
       })
       .then((result) => {
-         //  return result;
-         if (result.accessToken && result.refreshToken) {
-            return {
-               ok: true,
-               message: 'Inicio de sesión exitosa',
-            };
-         }
-
-         return { ok: false, message: result.msg };
+         return result;
       })
       .catch((err) => {
          return {
