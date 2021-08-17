@@ -49,9 +49,20 @@ export const signIn = (data) => {
          return response.json();
       })
       .then((result) => {
-         return result;
+         //  return result;
+         if (result.accessToken && result.refreshToken) {
+            return {
+               ok: true,
+               message: 'Inicio de sesión exitosa',
+            };
+         }
+
+         return { ok: false, message: result.msg };
       })
       .catch((err) => {
-         return err.message;
+         return {
+            ok: false,
+            message: err.message,
+         };
       });
 };
