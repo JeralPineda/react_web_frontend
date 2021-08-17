@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -9,8 +9,25 @@ const LoginForm = () => {
       color: 'rgba(0,0,0,0.25)',
    };
 
+   const [inputs, setInputs] = useState({
+      email: '',
+      password: '',
+   });
+
+   const changeForm = (e) => {
+      setInputs({
+         ...inputs,
+         [e.target.name]: e.target.value,
+      });
+   };
+
+   const login = (e) => {
+      e.preventDefault();
+      console.log(inputs);
+   };
+
    return (
-      <Form className='login-form'>
+      <Form className='login-form' onChange={changeForm} onSubmitCapture={login}>
          <Form.Item>
             <Input
                //
