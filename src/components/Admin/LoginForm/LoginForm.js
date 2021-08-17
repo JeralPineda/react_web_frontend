@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { signIn } from 'api/user';
 
 import './LoginForm.scss';
 
@@ -23,7 +24,9 @@ const LoginForm = () => {
 
    const login = (e) => {
       e.preventDefault();
-      console.log(inputs);
+
+      //   función para el login
+      signIn(inputs);
    };
 
    return (
