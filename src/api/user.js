@@ -49,7 +49,6 @@ export const signIn = (data) => {
          return response.json();
       })
       .then((result) => {
-         console.log(result);
          return result;
       })
       .catch((err) => {
