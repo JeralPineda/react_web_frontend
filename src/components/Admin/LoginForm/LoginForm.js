@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { signIn } from 'api/user';
+import { emailValidation, minLengthValidation } from 'utils/formValidation';
 
 import './LoginForm.scss';
 
@@ -15,6 +16,12 @@ const LoginForm = () => {
       password: '',
    });
 
+   //    estado para la validación de los formularios
+   const [formValid, setFormValid] = useState({
+      email: false,
+      password: false,
+   });
+
    const changeForm = (e) => {
       setInputs({
          ...inputs,
@@ -22,11 +29,71 @@ const LoginForm = () => {
       });
    };
 
-   const login = (e) => {
+   //    función para la validación del formulario
+   const inputValidation = ({ target }) => {
+      const { type, name } = target;
+
+      if (type === 'email') {
+         setFormValid({
+            ...formValid,
+            [name]: emailValidation(target),
+         });
+      }
+
+      if (type === 'password') {
+         setFormValid({
+            ...formValid,
+            [name]: minLengthValidation(target, 6),
+         });
+      }
+   };
+
+   const login = async (e) => {
       e.preventDefault();
 
-      //   función para el login
-      signIn(inputs);
+      const passwordVal = inputs.password;
+      const emailVal = inputs.email;
+
+      //   validamos que todos los campos estén llenos
+      if (!emailVal || !passwordVal) {
+         notification['error']({
+            message: 'Todos los campos son obligatorios',
+         });
+      } else {
+         //   función para el login
+         const result = await signIn(inputs);
+         if (!result.ok) {
+            notification['error']({
+               message: result.message,
+            });
+         } else {
+            notification['success']({
+               message: result.message,
+            });
+
+            resetForm();
+         }
+      }
+   };
+
+   //    limpiar los campos del formulario si todo es exitoso
+   const resetForm = () => {
+      const inputs = document.getElementsByTagName('input');
+
+      for (let i = 0; i < inputs.length; i++) {
+         inputs[i].classList.remove('success');
+         inputs[i].classList.remove('error');
+      }
+
+      setInputs({
+         email: '',
+         password: '',
+      });
+
+      setFormValid({
+         email: false,
+         password: false,
+      });
    };
 
    return (
@@ -39,8 +106,8 @@ const LoginForm = () => {
                name='email'
                placeholder='Correo'
                className='login-form__input'
-               //    onChange={inputVlidation}
-               //    value={inputs.email}
+               onChange={inputValidation}
+               value={inputs.email}
             />
          </Form.Item>
 
@@ -51,8 +118,8 @@ const LoginForm = () => {
                name='password'
                placeholder='Contraseña'
                className='login-form__input'
-               //    onChange={inputVlidation}
-               //    value={inputs.password}
+               onChange={inputValidation}
+               value={inputs.password}
             />
          </Form.Item>
 
