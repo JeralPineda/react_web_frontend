@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+
 import { signIn } from 'api/user';
 import { emailValidation, minLengthValidation } from 'utils/formValidation';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from 'utils/constant';
 
 import './LoginForm.scss';
 
@@ -62,16 +64,26 @@ const LoginForm = () => {
       } else {
          //   función para el login
          const result = await signIn(inputs);
-         if (!result.ok) {
+         if (result.msg) {
             notification['error']({
-               message: result.message,
+               message: result.msg,
             });
          } else {
+            const { accessToken, refreshToken } = result;
+
+            // guardamos ambos token obtenidos en localStorage
+            localStorage.setItem(ACCESS_TOKEN, accessToken);
+            localStorage.setItem(REFRESH_TOKEN, refreshToken);
+
             notification['success']({
-               message: result.message,
+               message: 'Login correcto',
             });
 
+            // reseteamos el formulario
             resetForm();
+
+            // redireccionamos
+            window.location.href = '/admin';
          }
       }
    };
