@@ -5,19 +5,20 @@ import { Layout } from 'antd';
 import MenuTop from 'components/Admin/menuTop';
 import MenuSider from 'components/Admin/MenuSider';
 import SignIn from 'pages/Admin/SignIn/SignIn';
+import useAuth from 'hooks/useAuth';
 
 import './LayoutAdmin.scss';
 
 const LayoutAdmin = ({ routes }) => {
    const { Header, Content, Footer } = Layout;
 
-   const [menuCollapsed, setMenuCollapsed] = useState(true);
+   const [menuCollapsed, setMenuCollapsed] = useState(false);
+
+   const { user, isLoading } = useAuth();
 
    const style = {
       marginLeft: menuCollapsed ? '80px' : '200px',
    };
-
-   const user = null;
 
    if (!user) {
       return (
