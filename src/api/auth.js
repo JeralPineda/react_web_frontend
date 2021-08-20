@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from 'utils/constant';
 import { apiVersion, basePath } from './config';
 
-export const getAccessToken = () => {
+export const getAccessTokenApi = () => {
    const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
    //    si el token caduco o no existe
@@ -14,7 +14,7 @@ export const getAccessToken = () => {
    return expiredToken(accessToken) ? null : accessToken;
 };
 
-export const getRefreshToken = () => {
+export const getRefreshTokenApi = () => {
    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
 
    if (!refreshToken || refreshToken === 'null') {
@@ -22,6 +22,39 @@ export const getRefreshToken = () => {
    }
 
    return expiredToken(refreshToken) ? null : refreshToken;
+};
+
+export const refreshAccessToken = (refreshToken) => {
+   const url = `${basePath}/${apiVersion}/auth/refresh-access-token`;
+
+   const bodyObj = { refreshToken };
+
+   const params = {
+      method: 'POST',
+      body: JSON.stringify(bodyObj),
+      headers: {
+         'Content-Type': 'application/json',
+      },
+   };
+
+   fetch(url, params)
+      .then((response) => {
+         if (response.status !== 200) {
+            return null;
+         }
+
+         return response.json();
+      })
+      .then((result) => {
+         if (!result) {
+            //    TODO: deslogear usuario, cerrar sesión
+         } else {
+            const { accessToken, refreshToken } = result;
+
+            localStorage.setItem(ACCESS_TOKEN, accessToken);
+            localStorage.setItem(REFRESH_TOKEN, refreshToken);
+         }
+      });
 };
 
 const expiredToken = (token) => {
