@@ -47,7 +47,8 @@ export const refreshAccessToken = (refreshToken) => {
       })
       .then((result) => {
          if (!result) {
-            //    TODO: deslogear usuario, cerrar sesión
+            //  deslogear usuario, cerrar sesión
+            logout();
          } else {
             const { accessToken, refreshToken } = result;
 
@@ -55,6 +56,12 @@ export const refreshAccessToken = (refreshToken) => {
             localStorage.setItem(REFRESH_TOKEN, refreshToken);
          }
       });
+};
+
+// Función cerrar sesión
+export const logout = () => {
+   localStorage.removeItem(ACCESS_TOKEN);
+   localStorage.removeItem(REFRESH_TOKEN);
 };
 
 const expiredToken = (token) => {
