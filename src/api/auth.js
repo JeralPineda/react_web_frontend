@@ -24,7 +24,7 @@ export const getRefreshTokenApi = () => {
    return expiredToken(refreshToken) ? null : refreshToken;
 };
 
-export const refreshAccessToken = (refreshToken) => {
+export const refreshAccessTokenApi = (refreshToken) => {
    const url = `${basePath}/${apiVersion}/auth/refresh-access-token`;
 
    const bodyObj = { refreshToken };
