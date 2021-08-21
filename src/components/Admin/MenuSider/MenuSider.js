@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, MenuOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 import './MenuSider.scss';
 import { Link } from 'react-router-dom';
@@ -18,9 +18,9 @@ const MenuSider = ({ menuCollapsed }) => {
                </Link>
             </Menu.Item>
             <Menu.Item key='2'>
-               <Link to={'/admin/login'}>
-                  <MenuOutlined />
-                  <span className='nav-text'> Menu web</span>
+               <Link to={'/admin/users'}>
+                  <UserOutlined />
+                  <span className='nav-text'> Usuarios</span>
                </Link>
             </Menu.Item>
          </Menu>
