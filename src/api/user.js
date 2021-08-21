@@ -58,3 +58,26 @@ export const signIn = (data) => {
          };
       });
 };
+
+export const getUsersApi = (token) => {
+   const url = `${basePath}/${apiVersion}/user/users`;
+
+   const params = {
+      method: 'GET',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
