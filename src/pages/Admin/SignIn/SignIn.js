@@ -5,12 +5,18 @@ import { Layout, Tabs } from 'antd';
 import RegisterForm from 'components/Admin/RegisterForm';
 import logo from '../../../assets/img/png/logo192.png';
 import LoginForm from 'components/Admin/LoginForm';
+import { getAccessTokenApi } from 'api/auth';
 
 import './SignIn.scss';
+import { Redirect } from 'react-router-dom';
 
 const SignIn = () => {
    const { Content } = Layout;
    const { TabPane } = Tabs;
+
+   if (getAccessTokenApi()) {
+      return <Redirect to='/admin' />;
+   }
 
    return (
       <Layout className='sign-in'>

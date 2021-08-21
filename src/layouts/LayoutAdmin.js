@@ -20,7 +20,7 @@ const LayoutAdmin = ({ routes }) => {
       marginLeft: menuCollapsed ? '80px' : '200px',
    };
 
-   if (!user) {
+   if (!user && !isLoading) {
       return (
          <>
             <Route path='/admin/login' component={SignIn} />
@@ -29,23 +29,27 @@ const LayoutAdmin = ({ routes }) => {
       );
    }
 
-   return (
-      <Layout>
-         <MenuSider menuCollapsed={menuCollapsed} />
+   if (user && !isLoading) {
+      return (
+         <Layout>
+            <MenuSider menuCollapsed={menuCollapsed} />
 
-         <Layout className='layout-admin' style={style}>
-            <Header className='layout-admin__header'>
-               <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
-            </Header>
+            <Layout className='layout-admin' style={style}>
+               <Header className='layout-admin__header'>
+                  <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
+               </Header>
 
-            <Content className='layout-admin__content'>
-               <LoadRoutes routes={routes} />
-            </Content>
+               <Content className='layout-admin__content'>
+                  <LoadRoutes routes={routes} />
+               </Content>
 
-            <Footer className='layout-admin__footer'>Footer</Footer>
+               <Footer className='layout-admin__footer'>Footer</Footer>
+            </Layout>
          </Layout>
-      </Layout>
-   );
+      );
+   }
+
+   return null;
 };
 
 function LoadRoutes({ routes }) {
