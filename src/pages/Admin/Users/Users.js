@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getAccessTokenApi } from 'api/auth';
 import { getUsersActiveApi } from 'api/user';
+import ListUsers from 'components/Admin/Users/ListUsers';
 
 import './Users.scss';
 
@@ -11,8 +12,8 @@ const Users = () => {
 
    const token = getAccessTokenApi();
 
-   console.log('userActive' + usersActive);
-   console.log('userInactive' + usersInactive);
+   //    console.log('userActive' + usersActive);
+   //    console.log('userInactive' + usersInactive);
 
    useEffect(() => {
       getUsersActiveApi(token, true).then((response) => {
@@ -25,8 +26,8 @@ const Users = () => {
    }, [token]);
 
    return (
-      <div>
-         <h1>Lista de usuarios</h1>
+      <div className='users'>
+         <ListUsers userActive={usersActive} userInactive={usersInactive} />
       </div>
    );
 };
