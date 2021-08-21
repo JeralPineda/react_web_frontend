@@ -4,12 +4,20 @@ import { MenuFoldOutlined, MenuUnfoldOutlined, PoweroffOutlined } from '@ant-des
 import { Link } from 'react-router-dom';
 
 import JeralPineda from '../../../assets/img/png/logo-white.png';
+import { logout } from 'api/auth';
 
 import './MenuTop.scss';
 
 const MenuTop = ({ menuCollapsed, setMenuCollapsed }) => {
    const handleMenuCollapsed = () => {
       setMenuCollapsed(!menuCollapsed);
+   };
+
+   const logoutUser = () => {
+      logout();
+
+      //   recargando
+      window.location.reload();
    };
 
    return (
@@ -24,7 +32,7 @@ const MenuTop = ({ menuCollapsed, setMenuCollapsed }) => {
             </Button>
          </div>
          <div className='menu-top__right'>
-            <Button type='link' onClick={() => console.log('cerrar sesión')}>
+            <Button type='link' onClick={logoutUser}>
                <PoweroffOutlined />
             </Button>
          </div>
