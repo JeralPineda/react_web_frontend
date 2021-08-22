@@ -12,9 +12,6 @@ const Users = () => {
 
    const token = getAccessTokenApi();
 
-   console.log('userActive', usersActive);
-   console.log('userInactive', usersInactive);
-
    useEffect(() => {
       getUsersActiveApi(token, true).then((response) => {
          setUsersActive(response.users);
