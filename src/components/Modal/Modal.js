@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal as ModalAntd } from 'antd';
 
-const Modal = ({ childrenm, title, isVisible, setIsVisible }) => {
+const Modal = ({ children, title, isVisible, setIsVisible }) => {
    const modalCancel = () => {
       setIsVisible(false);
    };
@@ -14,7 +14,7 @@ const Modal = ({ childrenm, title, isVisible, setIsVisible }) => {
          onCancel={modalCancel}
          footer={false}
       >
-         {childrenm}
+         {children}
       </ModalAntd>
    );
 };
