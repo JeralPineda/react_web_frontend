@@ -3,12 +3,13 @@ import { List, Avatar, Button } from 'antd';
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
+import EditUserForm from '../EditUserForm';
 
 export const UserActive = ({ usersActive, setIsVisibleModal, setModalTitle, setModalContent }) => {
    const editUser = (user) => {
       setIsVisibleModal(true);
       setModalTitle(`Editar ${user.name ? user.name : '...'} ${user.lastName} ${user.lastName ? user.lastName : '...'} `);
-      setModalContent('Formulario para editar un usuario');
+      setModalContent(<EditUserForm user={user} />);
    };
 
    const activeUser = () => {
