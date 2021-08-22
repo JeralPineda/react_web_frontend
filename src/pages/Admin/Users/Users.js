@@ -12,22 +12,22 @@ const Users = () => {
 
    const token = getAccessTokenApi();
 
-   //    console.log('userActive' + usersActive);
-   //    console.log('userInactive' + usersInactive);
+   console.log('userActive', usersActive);
+   console.log('userInactive', usersInactive);
 
    useEffect(() => {
       getUsersActiveApi(token, true).then((response) => {
-         setUsersActive(response);
+         setUsersActive(response.users);
       });
 
       getUsersActiveApi(token, false).then((response) => {
-         setUsersInactive(response);
+         setUsersInactive(response.users);
       });
    }, [token]);
 
    return (
       <div className='users'>
-         <ListUsers userActive={usersActive} userInactive={usersInactive} />
+         <ListUsers usersActive={usersActive} usersInactive={usersInactive} />
       </div>
    );
 };

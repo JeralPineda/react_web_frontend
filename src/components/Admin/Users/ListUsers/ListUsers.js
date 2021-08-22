@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Switch, List, Avatar, Button } from 'antd';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+// import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
 
 import './ListUsers.scss';
 
-const ListUsers = ({ userActive, userInactive }) => {
+const ListUsers = ({ usersActive, usersInactive }) => {
    const [viewUserActives, setViewUserActives] = useState(true);
 
    const handleActives = () => {
@@ -25,13 +25,34 @@ const ListUsers = ({ userActive, userInactive }) => {
             <span> {viewUserActives ? 'Usuarios Activos' : 'Usuarios Inactivos'}</span>
          </div>
 
-         {viewUserActives ? <UserActive /> : <UserInactive />}
+         {viewUserActives ? <UserActive usersActive={usersActive} /> : <UserInactive />}
       </div>
    );
 };
 
-const UserActive = () => {
-   return <h3>Lista de usuarios activos</h3>;
+const UserActive = ({ usersActive }) => {
+   console.log(usersActive);
+   return (
+      <List
+         //
+         className='users-active'
+         itemLayout='horizontal'
+         dataSource={usersActive}
+         renderItem={(user) => {
+            <List.Item>
+               <List.Item.Meta
+                  //
+                  avatar={<Avatar src={user.avatar ? user.avatar : NoAvatar} />}
+                  title={`
+                    ${user.name ? user.name : '...'}
+                    ${user.lastname ? user.lastname : '...'}
+                    `}
+                  description={user.email}
+               />
+            </List.Item>;
+         }}
+      />
+   );
 };
 
 const UserInactive = () => {
