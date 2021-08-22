@@ -11,6 +11,15 @@ import './ListUsers.scss';
 const ListUsers = ({ usersActive, usersInactive }) => {
    const [viewUserActives, setViewUserActives] = useState(true);
 
+   // Estado para mostrar y ocultar el modal
+   const [isVisibleModal, setIsVisibleModal] = useState(false);
+
+   // Estado para el titulo
+   const [modalTitle, setModalTitle] = useState('');
+
+   // Estado para el contenido del modal
+   const [modalContent, setModalContent] = useState(null);
+
    const handleActives = () => {
       setViewUserActives(!viewUserActives);
    };
@@ -27,15 +36,25 @@ const ListUsers = ({ usersActive, usersInactive }) => {
             <span> {viewUserActives ? 'Usuarios Activos' : 'Usuarios Inactivos'}</span>
          </div>
 
-         {viewUserActives ? <UserActive usersActive={usersActive} /> : <UserInactive usersInactive={usersInactive} />}
+         {viewUserActives ? (
+            <UserActive
+               //
+               usersActive={usersActive}
+               setIsVisibleModal={setIsVisibleModal}
+               setModalTitle={setModalTitle}
+               setModalContent={setModalContent}
+            />
+         ) : (
+            <UserInactive usersInactive={usersInactive} />
+         )}
 
          <Modal
             //
-            title='Mi Modal'
-            isVisible={true}
-            setIsVisible={() => console.log('hola')}
+            title={modalTitle}
+            isVisible={isVisibleModal}
+            setIsVisible={setIsVisibleModal}
          >
-            Este es mi modal!!
+            {modalContent}
          </Modal>
       </div>
    );

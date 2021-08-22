@@ -4,9 +4,11 @@ import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
 
-export const UserActive = ({ usersActive }) => {
-   const editUser = () => {
-      console.log('Editando usuario');
+export const UserActive = ({ usersActive, setIsVisibleModal, setModalTitle, setModalContent }) => {
+   const editUser = (user) => {
+      setIsVisibleModal(true);
+      setModalTitle(`Editar ${user.name ? user.name : '...'} ${user.lastName} ${user.lastName ? user.lastName : '...'} `);
+      setModalContent('Formulario para editar un usuario');
    };
 
    const activeUser = () => {
@@ -29,7 +31,7 @@ export const UserActive = ({ usersActive }) => {
                   <Button
                      //
                      type='primary'
-                     onClick={editUser}
+                     onClick={() => editUser(user)}
                   >
                      <EditOutlined />
                   </Button>,
