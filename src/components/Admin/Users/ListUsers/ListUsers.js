@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Switch, List, Avatar, Button } from 'antd';
+import { Switch } from 'antd';
 // import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
-import NoAvatar from 'assets/img/png/no-avatar.png';
+import { UserActive } from './UserActive';
+import { UserInactive } from './UserInactive';
 
 import './ListUsers.scss';
 
@@ -14,8 +15,8 @@ const ListUsers = ({ usersActive, usersInactive }) => {
    };
 
    return (
-      <div className='List-users'>
-         <div className='List-users__switch'>
+      <div className='list-users'>
+         <div className='list-users__switch'>
             <Switch
                //
                defaultChecked
@@ -25,38 +26,9 @@ const ListUsers = ({ usersActive, usersInactive }) => {
             <span> {viewUserActives ? 'Usuarios Activos' : 'Usuarios Inactivos'}</span>
          </div>
 
-         {viewUserActives ? <UserActive usersActive={usersActive} /> : <UserInactive />}
+         {viewUserActives ? <UserActive usersActive={usersActive} /> : <UserInactive usersInactive={usersInactive} />}
       </div>
    );
-};
-
-const UserActive = ({ usersActive }) => {
-   console.log(usersActive);
-   return (
-      <List
-         //
-         className='users-active'
-         itemLayout='horizontal'
-         dataSource={usersActive}
-         renderItem={(user) => {
-            <List.Item>
-               <List.Item.Meta
-                  //
-                  avatar={<Avatar src={user.avatar ? user.avatar : NoAvatar} />}
-                  title={`
-                    ${user.name ? user.name : '...'}
-                    ${user.lastname ? user.lastname : '...'}
-                    `}
-                  description={user.email}
-               />
-            </List.Item>;
-         }}
-      />
-   );
-};
-
-const UserInactive = () => {
-   return <h3>Lista de usuarios inactivos</h3>;
 };
 
 export default ListUsers;
