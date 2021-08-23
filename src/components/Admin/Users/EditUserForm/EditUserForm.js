@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { UploadAvatar } from './UploadAvatar';
 import { EditForm } from './EditForm';
@@ -15,6 +15,13 @@ const EditUserForm = ({ user }) => {
       role: user.role,
       avatar: user.avatar,
    });
+
+   useEffect(() => {
+      if (avatar) {
+         setUserData({ ...userData, avatar });
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [avatar]);
 
    const updateUser = (e) => {
       console.log(userData);
