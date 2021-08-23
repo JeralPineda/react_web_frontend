@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import { Avatar, Form, Input, Select, Button, Row, Col } from 'antd';
-// import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Input } from 'antd';
 import { useDropzone } from 'react-dropzone';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
