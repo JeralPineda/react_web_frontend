@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Avatar, Form, Input, Select, Button, Row, Col } from 'antd';
+// import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { useDropzone } from 'react-dropzone';
+
+import { UploadAvatar } from './UploadAvatar';
 
 import './EditUserForm.scss';
 
 const EditUserForm = ({ user }) => {
+   const [avatar, setAvatar] = useState(null);
    return (
-      <div>
-         <h1>Formulario para editar usuario</h1>
-         <h2>{user.email}</h2>
+      <div className='edit-user-form'>
+         <UploadAvatar avatar={avatar} setAvatar={setAvatar} />
       </div>
    );
 };
