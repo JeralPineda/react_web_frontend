@@ -5,7 +5,6 @@ import { useDropzone } from 'react-dropzone';
 import NoAvatar from 'assets/img/png/no-avatar.png';
 
 export const UploadAvatar = ({ avatar, setAvatar }) => {
-   console.log(avatar);
    const onDrop = useCallback(
       (acceptedFiles) => {
          const file = acceptedFiles[0];
