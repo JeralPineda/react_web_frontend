@@ -54,6 +54,8 @@ const EditUserForm = ({ user, setIsVisibleModal, setReloadUsers }) => {
                message: 'Las contraseñas tienen que ser iguales',
             });
             return;
+         } else {
+            delete userUpdate.repeatPassword;
          }
       }
 
