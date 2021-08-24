@@ -167,3 +167,29 @@ export const updateUserApi = (token, user, userId) => {
          return err.message;
       });
 };
+
+export const activateUserApi = (token, userId, status) => {
+   const url = `${basePath}/${apiVersion}/user/activate-user/${userId}`;
+
+   const params = {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+         active: status,
+      }),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result.message;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
