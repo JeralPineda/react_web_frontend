@@ -104,3 +104,30 @@ export const getUsersActiveApi = (token, status) => {
          return err.message;
       });
 };
+
+export const uploadAvatarApi = (token, avatar, userId) => {
+   const url = `${basePath}/${apiVersion}/user/upload-avatar/${userId}`;
+
+   const formData = new FormData();
+
+   formData.append('avatar', avatar, avatar.name);
+
+   const params = {
+      method: 'PUT',
+      body: formData,
+      headers: {
+         'x-token': `Bearer ${token}`,
+      },
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
