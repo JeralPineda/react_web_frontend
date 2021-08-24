@@ -10,7 +10,13 @@ export const UsersActive = ({ usersActive, setIsVisibleModal, setModalTitle, set
 
       setModalTitle(`Editar ${user.name ? user.name : '...'} ${user.lastName} ${user.lastName ? user.lastName : '...'} `);
 
-      setModalContent(<EditUserForm user={user} setIsVisibleModal={setIsVisibleModal} setReloadUsers={setReloadUsers} />);
+      setModalContent(
+         <EditUserForm //
+            user={user}
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadUsers={setReloadUsers}
+         />
+      );
    };
 
    return (
@@ -18,7 +24,13 @@ export const UsersActive = ({ usersActive, setIsVisibleModal, setModalTitle, set
          className='users-active'
          itemLayout='horizontal'
          dataSource={usersActive}
-         renderItem={(user) => <UserActive user={user} editUser={editUser} />}
+         renderItem={(user) => (
+            <UserActive //
+               user={user}
+               editUser={editUser}
+               setReloadUsers={setReloadUsers}
+            />
+         )}
       />
    );
 };
