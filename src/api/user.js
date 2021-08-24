@@ -187,7 +187,7 @@ export const activateUserApi = (token, userId, status) => {
          return response.json();
       })
       .then((result) => {
-         return result.message;
+         return result.msg;
       })
       .catch((err) => {
          return err.message;
