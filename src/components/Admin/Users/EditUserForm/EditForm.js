@@ -83,6 +83,7 @@ export const EditForm = ({ userData, setUserData, updateUser }) => {
                      prefix={<LockOutlined />}
                      type='password'
                      placeholder='Contraseña'
+                     value={userData.password}
                      onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                   />
                </Form.Item>
@@ -94,6 +95,7 @@ export const EditForm = ({ userData, setUserData, updateUser }) => {
                      prefix={<LockOutlined />}
                      type='password'
                      placeholder='Repetir contraseña'
+                     value={userData.repeatPassword}
                      onChange={(e) => setUserData({ ...userData, repeatPassword: e.target.value })}
                   />
                </Form.Item>
