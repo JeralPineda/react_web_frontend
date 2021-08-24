@@ -1,10 +1,24 @@
-import React, { useCallback } from 'react';
-import { Avatar, Input } from 'antd';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Avatar } from 'antd';
 import { useDropzone } from 'react-dropzone';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
 
 export const UploadAvatar = ({ avatar, setAvatar }) => {
+   const [avatarUrl, setAvatarUrl] = useState(null);
+
+   useEffect(() => {
+      if (avatar) {
+         if (avatar.preview) {
+            setAvatarUrl(avatar.preview);
+         } else {
+            setAvatarUrl(avatar);
+         }
+      } else {
+         setAvatarUrl(null);
+      }
+   }, [avatar]);
+
    const onDrop = useCallback(
       (acceptedFiles) => {
          const file = acceptedFiles[0];
@@ -21,8 +35,8 @@ export const UploadAvatar = ({ avatar, setAvatar }) => {
 
    return (
       <div className='upload-avatar' {...getRootProps()}>
-         <Input {...getInputProps()} />
-         {isDragActive ? <Avatar size={150} src={NoAvatar} /> : <Avatar size={150} src={avatar ? avatar.preview : NoAvatar} />}
+         <input {...getInputProps()} />
+         {isDragActive ? <Avatar size={150} src={NoAvatar} /> : <Avatar size={150} src={avatarUrl ? avatarUrl : NoAvatar} />}
       </div>
    );
 };
