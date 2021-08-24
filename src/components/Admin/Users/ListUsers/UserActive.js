@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { List, Avatar, Button, notification } from 'antd';
+import { List, Avatar, Button, notification, Modal as ModalAntd } from 'antd';
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
 
-import { activateUserApi, getAvatarApi } from 'api/user';
+import { activateUserApi, deleteUserApi, getAvatarApi } from 'api/user';
 import NoAvatar from 'assets/img/png/no-avatar.png';
 import { getAccessTokenApi } from 'api/auth';
 
 export const UserActive = ({ user, editUser, setReloadUsers }) => {
    const [avatar, setAvatar] = useState(null);
+
+   const { confirm } = ModalAntd;
 
    useEffect(() => {
       if (user.avatar) {
@@ -38,8 +40,32 @@ export const UserActive = ({ user, editUser, setReloadUsers }) => {
          });
    };
 
-   const deleteUser = () => {
-      console.log('Eliminar usuario');
+   const showDeleteConfirm = () => {
+      const token = getAccessTokenApi();
+
+      confirm({
+         title: 'Eliminando usuario',
+         content: `¿Estas seguro que deseas eliminar a ${user.email}?`,
+         okText: 'Eliminar',
+         okType: 'danger',
+         cancelText: 'Cancelar',
+         onOk() {
+            deleteUserApi(token, user.uid)
+               .then((response) => {
+                  notification['success']({
+                     message: response,
+                  });
+
+                  // actualizamos el usuario
+                  setReloadUsers(true);
+               })
+               .catch((err) => {
+                  notification['error']({
+                     message: err,
+                  });
+               });
+         },
+      });
    };
 
    return (
@@ -63,7 +89,7 @@ export const UserActive = ({ user, editUser, setReloadUsers }) => {
             <Button
                //
                type='danger'
-               onClick={deleteUser}
+               onClick={showDeleteConfirm}
             >
                <DeleteOutlined />
             </Button>,
