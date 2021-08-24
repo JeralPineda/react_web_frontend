@@ -53,9 +53,8 @@ const EditUserForm = ({ user, setIsVisibleModal, setReloadUsers }) => {
             notification['error']({
                message: 'Las contraseñas tienen que ser iguales',
             });
+            return;
          }
-
-         return;
       }
 
       //   Verificamos que los campos no vengan vacíos
