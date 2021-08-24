@@ -131,3 +131,15 @@ export const uploadAvatarApi = (token, avatar, userId) => {
          return err.message;
       });
 };
+
+export const getAvatarApi = (avatarName) => {
+   const url = `${basePath}/${apiVersion}/user/get-avatar/${avatarName}`;
+
+   return fetch(url)
+      .then((response) => {
+         return response.url;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
