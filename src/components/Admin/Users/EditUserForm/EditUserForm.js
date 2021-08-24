@@ -49,7 +49,7 @@ const EditUserForm = ({ user, setIsVisibleModal, setReloadUsers }) => {
 
       //   verificamos que las contraseñas sean iguales
       if (userUpdate.password || userUpdate.repeatPassword) {
-         if ((userUpdate.password = userUpdate.repeatPassword)) {
+         if (userUpdate.password !== userUpdate.repeatPassword) {
             notification['error']({
                message: 'Las contraseñas tienen que ser iguales',
             });
