@@ -143,3 +143,27 @@ export const getAvatarApi = (avatarName) => {
          return err.message;
       });
 };
+
+export const updateUserApi = (token, user, userId) => {
+   const url = `${basePath}/${apiVersion}/user/update-user/${userId}`;
+
+   const params = {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify(user),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
