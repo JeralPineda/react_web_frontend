@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { List, Avatar, Button } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { CheckOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
 import { getAvatarApi } from 'api/user';
@@ -19,7 +19,7 @@ export const UserInactive = ({ user }) => {
    }, [user]);
 
    const editUser = () => {
-      console.log('Editando usuario');
+      console.log('Activar usuario');
    };
 
    const deleteUser = () => {
@@ -34,7 +34,7 @@ export const UserInactive = ({ user }) => {
                type='primary'
                onClick={editUser}
             >
-               <EditOutlined />
+               <CheckOutlined />
             </Button>,
             <Button
                //
