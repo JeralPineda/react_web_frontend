@@ -45,7 +45,7 @@ const ListUsers = ({ usersActive, usersInactive, setReloadUsers }) => {
                setReloadUsers={setReloadUsers}
             />
          ) : (
-            <UsersInactive usersInactive={usersInactive} />
+            <UsersInactive usersInactive={usersInactive} setReloadUsers={setReloadUsers} />
          )}
 
          <Modal
