@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Switch } from 'antd';
-// import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 import { UsersActive } from './UsersActive';
 import { UsersInactive } from './UsersInactive';
@@ -8,7 +7,7 @@ import Modal from 'components/Modal';
 
 import './ListUsers.scss';
 
-const ListUsers = ({ usersActive, usersInactive }) => {
+const ListUsers = ({ usersActive, usersInactive, setReloadUsers }) => {
    const [viewUserActives, setViewUserActives] = useState(true);
 
    // Estado para mostrar y ocultar el modal
@@ -43,6 +42,7 @@ const ListUsers = ({ usersActive, usersInactive }) => {
                setIsVisibleModal={setIsVisibleModal}
                setModalTitle={setModalTitle}
                setModalContent={setModalContent}
+               setReloadUsers={setReloadUsers}
             />
          ) : (
             <UsersInactive usersInactive={usersInactive} />
