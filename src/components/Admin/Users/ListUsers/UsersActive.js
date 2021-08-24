@@ -14,7 +14,6 @@ export const UsersActive = ({ usersActive, setIsVisibleModal, setModalTitle, set
    };
 
    return (
-      //
       <List //
          className='users-active'
          itemLayout='horizontal'
