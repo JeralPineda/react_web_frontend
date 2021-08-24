@@ -193,3 +193,26 @@ export const activateUserApi = (token, userId, status) => {
          return err.message;
       });
 };
+
+export const deleteUserApi = (token, userId) => {
+   const url = `${basePath}/${apiVersion}/user/delete-user/${userId}`;
+
+   const params = {
+      method: 'DELETE',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result.msg;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
