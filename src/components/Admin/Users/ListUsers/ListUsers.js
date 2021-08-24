@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Switch } from 'antd';
 // import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
-import { UserActive } from './UserActive';
-import { UserInactive } from './UserInactive';
+import { UsersActive } from './UsersActive';
+import { UsersInactive } from './UsersInactive';
 import Modal from 'components/Modal';
 
 import './ListUsers.scss';
@@ -37,7 +37,7 @@ const ListUsers = ({ usersActive, usersInactive }) => {
          </div>
 
          {viewUserActives ? (
-            <UserActive
+            <UsersActive
                //
                usersActive={usersActive}
                setIsVisibleModal={setIsVisibleModal}
@@ -45,7 +45,7 @@ const ListUsers = ({ usersActive, usersInactive }) => {
                setModalContent={setModalContent}
             />
          ) : (
-            <UserInactive usersInactive={usersInactive} />
+            <UsersInactive usersInactive={usersInactive} />
          )}
 
          <Modal

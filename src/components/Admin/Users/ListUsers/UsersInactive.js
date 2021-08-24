@@ -1,19 +1,12 @@
 import React from 'react';
 import { List, Avatar, Button } from 'antd';
-import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
-import EditUserForm from '../EditUserForm';
 
-export const UserActive = ({ usersActive, setIsVisibleModal, setModalTitle, setModalContent }) => {
-   const editUser = (user) => {
-      setIsVisibleModal(true);
-      setModalTitle(`Editar ${user.name ? user.name : '...'} ${user.lastName} ${user.lastName ? user.lastName : '...'} `);
-      setModalContent(<EditUserForm user={user} />);
-   };
-
-   const activeUser = () => {
-      console.log('Desactivar usuario');
+export const UsersInactive = ({ usersInactive }) => {
+   const editUser = () => {
+      console.log('Editando usuario');
    };
 
    const deleteUser = () => {
@@ -24,7 +17,7 @@ export const UserActive = ({ usersActive, setIsVisibleModal, setModalTitle, setM
       <List
          className='users-active'
          itemLayout='horizontal'
-         dataSource={usersActive}
+         dataSource={usersInactive}
          renderItem={(user) => (
             <List.Item
                //
@@ -32,16 +25,9 @@ export const UserActive = ({ usersActive, setIsVisibleModal, setModalTitle, setM
                   <Button
                      //
                      type='primary'
-                     onClick={() => editUser(user)}
+                     onClick={editUser}
                   >
                      <EditOutlined />
-                  </Button>,
-                  <Button
-                     //
-                     type='danger'
-                     onClick={activeUser}
-                  >
-                     <StopOutlined />
                   </Button>,
                   <Button
                      //
