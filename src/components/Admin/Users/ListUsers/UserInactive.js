@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { List, Avatar, Button } from 'antd';
+import { List, Avatar, Button, notification } from 'antd';
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import NoAvatar from 'assets/img/png/no-avatar.png';
-import { getAvatarApi } from 'api/user';
+import { activateUserApi, getAvatarApi } from 'api/user';
+import { getAccessTokenApi } from 'api/auth';
 
-export const UserInactive = ({ user }) => {
+export const UserInactive = ({ user, setReloadUsers }) => {
    const [avatar, setAvatar] = useState(null);
 
    useEffect(() => {
@@ -18,8 +19,23 @@ export const UserInactive = ({ user }) => {
       }
    }, [user]);
 
-   const editUser = () => {
-      console.log('Activar usuario');
+   const activeUser = () => {
+      const accessToken = getAccessTokenApi();
+
+      activateUserApi(accessToken, user.uid, true)
+         .then((response) => {
+            notification['success']({
+               message: response,
+            });
+
+            // actualizamos el usuario
+            setReloadUsers(true);
+         })
+         .catch((err) => {
+            notification['error']({
+               message: err,
+            });
+         });
    };
 
    const deleteUser = () => {
@@ -32,7 +48,7 @@ export const UserInactive = ({ user }) => {
             <Button
                //
                type='primary'
-               onClick={editUser}
+               onClick={activeUser}
             >
                <CheckOutlined />
             </Button>,
