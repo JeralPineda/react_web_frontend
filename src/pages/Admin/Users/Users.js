@@ -10,6 +10,9 @@ const Users = () => {
    const [usersActive, setUsersActive] = useState([]);
    const [usersInactive, setUsersInactive] = useState([]);
 
+   //    Estado para actualizar el contenido de la lista
+   const [reloadUsers, setReloadUsers] = useState(false);
+
    const token = getAccessTokenApi();
 
    useEffect(() => {
@@ -20,11 +23,13 @@ const Users = () => {
       getUsersActiveApi(token, false).then((response) => {
          setUsersInactive(response.users);
       });
-   }, [token]);
+
+      setReloadUsers(false);
+   }, [token, reloadUsers]);
 
    return (
       <div className='users'>
-         <ListUsers usersActive={usersActive} usersInactive={usersInactive} />
+         <ListUsers usersActive={usersActive} usersInactive={usersInactive} setReloadUsers={setReloadUsers} />
       </div>
    );
 };
