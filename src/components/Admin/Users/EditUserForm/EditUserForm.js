@@ -91,7 +91,7 @@ const EditUserForm = ({ user, setIsVisibleModal, setReloadUsers }) => {
       //   cerramos el modal
       setIsVisibleModal(false);
 
-      //
+      //  Actualizar la info del usuario
       setReloadUsers(true);
    };
 
