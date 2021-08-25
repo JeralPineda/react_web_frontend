@@ -4,6 +4,7 @@ import { Button, Switch } from 'antd';
 import { UsersActive } from './UsersActive';
 import { UsersInactive } from './UsersInactive';
 import Modal from 'components/Modal';
+import AddUserForm from '../AddUserForm';
 
 import './ListUsers.scss';
 
@@ -29,9 +30,7 @@ const ListUsers = ({ usersActive, usersInactive, setReloadUsers }) => {
       setModalTitle('Creando nuevo usuario');
       setModalContent(
          //
-         <div>
-            <h1>Formulario creación nuevo usuario</h1>
-         </div>
+         <AddUserForm setIsVisibleModal={setIsVisibleModal} setReloadUsers={setReloadUsers} />
       );
    };
 
