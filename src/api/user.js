@@ -216,3 +216,27 @@ export const deleteUserApi = (token, userId) => {
          return err.message;
       });
 };
+
+export const signUpAdminApi = (token, data) => {
+   const url = `${basePath}/${apiVersion}/user/sign-up-admin}`;
+
+   const params = {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result.msg;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
