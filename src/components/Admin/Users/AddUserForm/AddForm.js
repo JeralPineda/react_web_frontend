@@ -40,7 +40,7 @@ export const AddForm = ({ userData, setUserData, addUser }) => {
                      prefix={<MailOutlined />}
                      placeholder='Correo'
                      value={userData.email}
-                     onChange={({ target }) => setUserData({ ...userData, correo: target.value })}
+                     onChange={({ target }) => setUserData({ ...userData, email: target.value })}
                   />
                </Form.Item>
             </Col>
