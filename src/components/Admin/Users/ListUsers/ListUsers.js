@@ -23,6 +23,18 @@ const ListUsers = ({ usersActive, usersInactive, setReloadUsers }) => {
       setViewUserActives(!viewUserActives);
    };
 
+   const addUserModal = () => {
+      setIsVisibleModal(true);
+
+      setModalTitle('Creando nuevo usuario');
+      setModalContent(
+         //
+         <div>
+            <h1>Formulario creación nuevo usuario</h1>
+         </div>
+      );
+   };
+
    return (
       <div className='list-users'>
          <div className='list-users__header'>
@@ -36,7 +48,7 @@ const ListUsers = ({ usersActive, usersInactive, setReloadUsers }) => {
                <span> {viewUserActives ? 'Usuarios Activos' : 'Usuarios Inactivos'}</span>
             </div>
 
-            <Button type='primary' onClick={() => console.log('creando usuario')}>
+            <Button type='primary' onClick={addUserModal}>
                Nuevo usuario
             </Button>
          </div>
