@@ -218,7 +218,7 @@ export const deleteUserApi = (token, userId) => {
 };
 
 export const signUpAdminApi = (token, data) => {
-   const url = `${basePath}/${apiVersion}/user/sign-up-admin}`;
+   const url = `${basePath}/${apiVersion}/user/sign-up-admin`;
 
    const params = {
       method: 'POST',
