@@ -35,7 +35,7 @@ const LayoutAdmin = ({ routes }) => {
             <MenuSider menuCollapsed={menuCollapsed} />
 
             <Layout className='layout-admin' style={style}>
-               <Header className='layout-admin__header'>
+               <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }} className='layout-admin__header'>
                   <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
                </Header>
 
