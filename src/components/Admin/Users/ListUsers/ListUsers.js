@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch } from 'antd';
+import { Button, Switch } from 'antd';
 
 import { UsersActive } from './UsersActive';
 import { UsersInactive } from './UsersInactive';
@@ -25,14 +25,20 @@ const ListUsers = ({ usersActive, usersInactive, setReloadUsers }) => {
 
    return (
       <div className='list-users'>
-         <div className='list-users__switch'>
-            <Switch
-               //
-               defaultChecked
-               onChange={handleActives}
-            />
+         <div className='list-users__header'>
+            <div className='list-users__header-switch'>
+               <Switch
+                  //
+                  defaultChecked
+                  onChange={handleActives}
+               />
 
-            <span> {viewUserActives ? 'Usuarios Activos' : 'Usuarios Inactivos'}</span>
+               <span> {viewUserActives ? 'Usuarios Activos' : 'Usuarios Inactivos'}</span>
+            </div>
+
+            <Button type='primary' onClick={() => console.log('creando usuario')}>
+               Nuevo usuario
+            </Button>
          </div>
 
          {viewUserActives ? (
