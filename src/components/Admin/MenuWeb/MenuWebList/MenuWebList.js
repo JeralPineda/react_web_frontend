@@ -5,7 +5,7 @@ import DragSortableList from 'react-drag-sortable';
 
 import Modal from 'components/Modal';
 import { MenuItem } from './MenuItem';
-import { updateMenuApi } from 'api/menu';
+import { activateMenuApi, updateMenuApi } from 'api/menu';
 import { getAccessTokenApi } from 'api/auth';
 
 import './MenuWebList.scss';
@@ -27,12 +27,28 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
 
       menu.forEach((item) => {
          listItemArray.push({
-            content: <MenuItem item={item} />,
+            content: <MenuItem item={item} activateMenu={activateMenu} />,
          });
       });
 
       setListItems(listItemArray);
    }, [menu]);
+
+   const activateMenu = (menu, status) => {
+      const accessToken = getAccessTokenApi();
+
+      activateMenuApi(accessToken, menu.uid, status)
+         .then((response) => {
+            notification['success']({
+               message: response,
+            });
+         })
+         .catch((err) => {
+            notification['error']({
+               message: err,
+            });
+         });
+   };
 
    const onSort = (sortedList, dropEvent) => {
       const accessToken = getAccessTokenApi();
