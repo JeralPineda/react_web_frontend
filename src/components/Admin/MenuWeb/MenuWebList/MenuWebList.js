@@ -4,13 +4,16 @@ import { UserOutlined } from '@ant-design/icons';
 import DragSortableList from 'react-drag-sortable';
 
 import Modal from 'components/Modal';
+import { MenuItem } from './MenuItem';
+import { updateMenuApi } from 'api/menu';
+import { getAccessTokenApi } from 'api/auth';
 
 import './MenuWebList.scss';
-import { MenuItem } from './MenuItem';
 
 const { confirm } = ModalAnrd;
 
 const MenuWebList = ({ menu, setReloadMenuWeb }) => {
+   console.log(menu);
    const [listItems, setListItems] = useState([]); //guardamos los item
    // Cerrar el modal
    const [isVisibleModal, setIsVisibleModal] = useState(true);
@@ -33,7 +36,15 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
    }, [menu]);
 
    const onSort = (sortedList, dropEvent) => {
-      console.log(sortedList);
+      const accessToken = getAccessTokenApi();
+
+      //   recorremos el array que nos devuelve el order list
+      sortedList.forEach((item) => {
+         const { uid } = item.content.props.item;
+         const order = item.rank;
+
+         updateMenuApi(accessToken, uid, { order });
+      });
    };
 
    return (
