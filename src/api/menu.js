@@ -14,3 +14,27 @@ export const getMenuApi = () => {
          return err.message;
       });
 };
+
+export const updateMenuApi = (token, menuId, data) => {
+   const url = `${basePath}/${apiVersion}/menu/update-menu/${menuId}`;
+
+   const params = {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
