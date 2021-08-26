@@ -13,7 +13,6 @@ import './MenuWebList.scss';
 const { confirm } = ModalAnrd;
 
 const MenuWebList = ({ menu, setReloadMenuWeb }) => {
-   console.log(menu);
    const [listItems, setListItems] = useState([]); //guardamos los item
    // Cerrar el modal
    const [isVisibleModal, setIsVisibleModal] = useState(true);
