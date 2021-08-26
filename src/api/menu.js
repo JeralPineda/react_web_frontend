@@ -32,7 +32,7 @@ export const updateMenuApi = (token, menuId, data) => {
          return response.json();
       })
       .then((result) => {
-         return result;
+         return result.msg;
       })
       .catch((err) => {
          return err.message;
@@ -56,7 +56,7 @@ export const activateMenuApi = (token, menuId, status) => {
          return response.json();
       })
       .then((result) => {
-         return result;
+         return result.msg;
       })
       .catch((err) => {
          return err.message;
