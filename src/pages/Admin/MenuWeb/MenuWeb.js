@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { getMenuApi } from 'api/menu';
+import MenuWebList from 'components/Admin/MenuWeb/MenuWebList';
 
 const MenuWeb = () => {
    const [menu, setMenu] = useState([]);
@@ -16,7 +17,7 @@ const MenuWeb = () => {
 
    return (
       <div className='menu-web'>
-         <h1>Menu web</h1>
+         <MenuWebList menu={menu} setReloadMenuWeb={setReloadMenuWeb} />
       </div>
    );
 };
