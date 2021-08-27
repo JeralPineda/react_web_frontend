@@ -8,7 +8,7 @@ export const AddForm = ({ menuWebData, setMenuWebData, addMenu }) => {
    const selectBefore = (
       <Select
          //
-         placeholder='Elija'
+         defaultValue='http://'
          style={{ width: 90 }}
          onChange={(e) => setMenuWebData({ ...menuWebData, http: e })}
       >
