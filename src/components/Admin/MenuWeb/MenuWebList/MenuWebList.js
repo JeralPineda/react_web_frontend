@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Button, List, Modal as ModalAnrd, notification } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Button, Modal as ModalAnrd, notification } from 'antd';
 import DragSortableList from 'react-drag-sortable';
 
 import Modal from 'components/Modal';
