@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { notification } from 'antd';
 
-import './AddMenuWebForm.scss';
-import { AddForm } from 'components/Admin/Users/AddUserForm/AddForm';
+import { AddForm } from './AddForm';
+import { addMenuApi } from 'api/menu';
+import { getAccessTokenApi } from 'api/auth';
 
-const AddMenuWebForm = () => {
+import './AddMenuWebForm.scss';
+
+const AddMenuWebForm = ({ setIsVisibleModal, setReloadMenuWeb }) => {
+   const [menuWebData, setMenuWebData] = useState({});
+
+   const addMenu = () => {
+      console.log('Creando menu');
+      console.log(menuWebData);
+   };
+
    return (
       <div className='add-menu-web-form'>
-         <AddForm />
+         <AddForm menuWebData={menuWebData} setMenuWebData={setMenuWebData} addMenu={addMenu} />
       </div>
    );
 };
