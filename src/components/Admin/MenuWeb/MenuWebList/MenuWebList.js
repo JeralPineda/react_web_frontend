@@ -74,7 +74,13 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
 
       setModalTitle('Creando nuevo menú');
 
-      setmodalContent(<AddMenuWebForm />);
+      setmodalContent(
+         <AddMenuWebForm
+            //
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadMenuWeb={setReloadMenuWeb}
+         />
+      );
    };
 
    return (
