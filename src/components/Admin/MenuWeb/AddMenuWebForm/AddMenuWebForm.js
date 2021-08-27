@@ -11,8 +11,12 @@ const AddMenuWebForm = ({ setIsVisibleModal, setReloadMenuWeb }) => {
    const [menuWebData, setMenuWebData] = useState({});
 
    const addMenu = () => {
-      console.log('Creando menu');
-      console.log(menuWebData);
+      const finalData = {
+         title: menuWebData.title,
+         url: `${menuWebData.http ? menuWebData.http : 'http://'}${menuWebData.url}`,
+      };
+
+      console.log(finalData);
    };
 
    return (
