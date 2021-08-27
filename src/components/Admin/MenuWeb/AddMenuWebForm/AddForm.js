@@ -2,15 +2,15 @@ import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
 import { FontSizeOutlined } from '@ant-design/icons';
 
-export const AddForm = (props) => {
+export const AddForm = ({ menuWebData, setMenuWebData, addMenu }) => {
    const { Option } = Select;
 
    const selectBefore = (
       <Select
          //
-         defaultValue='http://'
+         placeholder='Elija'
          style={{ width: 90 }}
-         //  onChange={() => console.log('hola')}
+         onChange={(e) => setMenuWebData({ ...menuWebData, http: e })}
       >
          <Option value='http://'>http://</Option>
          <Option value='https://'>https://</Option>
@@ -18,14 +18,14 @@ export const AddForm = (props) => {
    );
 
    return (
-      <Form className='form-add'>
+      <Form className='form-add' onFinish={addMenu}>
          <Form.Item>
             <Input
                //
                prefix={<FontSizeOutlined />}
                placeholder='Titulo'
-               value='Hola'
-               //    onChange={() => console.log('hola')}
+               value={menuWebData.title}
+               onChange={(e) => setMenuWebData({ ...menuWebData, title: e.target.value })}
             />
          </Form.Item>
 
@@ -34,8 +34,8 @@ export const AddForm = (props) => {
                //
                addonBefore={selectBefore}
                placeholder='URL'
-               value='url'
-               //    onChange={() => console.log('hola')}
+               value={menuWebData.url}
+               onChange={(e) => setMenuWebData({ ...menuWebData, url: e.target.value })}
             />
          </Form.Item>
 
