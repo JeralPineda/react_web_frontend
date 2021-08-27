@@ -62,3 +62,27 @@ export const activateMenuApi = (token, menuId, status) => {
          return err.message;
       });
 };
+
+export const addMenuApi = (token, menu) => {
+   const url = `${basePath}/${apiVersion}/menu/add-menu`;
+
+   const params = {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify(menu),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result.msg;
+      })
+      .catch((err) => {
+         return err.message;
+      });
+};
