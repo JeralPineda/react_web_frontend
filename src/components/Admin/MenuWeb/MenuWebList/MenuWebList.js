@@ -9,13 +9,14 @@ import { activateMenuApi, updateMenuApi } from 'api/menu';
 import { getAccessTokenApi } from 'api/auth';
 
 import './MenuWebList.scss';
+import AddMenuWebForm from '../AddMenuWebForm';
 
 const { confirm } = ModalAnrd;
 
 const MenuWebList = ({ menu, setReloadMenuWeb }) => {
    const [listItems, setListItems] = useState([]); //guardamos los item
    // Cerrar el modal
-   const [isVisibleModal, setIsVisibleModal] = useState(true);
+   const [isVisibleModal, setIsVisibleModal] = useState(false);
 
    // Titulo del modal
    const [modalTitle, setModalTitle] = useState('');
@@ -27,7 +28,13 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
 
       menu.forEach((item) => {
          listItemArray.push({
-            content: <MenuItem item={item} activateMenu={activateMenu} />,
+            content: (
+               <MenuItem
+                  //
+                  item={item}
+                  activateMenu={activateMenu}
+               />
+            ),
          });
       });
 
@@ -62,15 +69,29 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
       });
    };
 
+   const addMenuWebModal = () => {
+      setIsVisibleModal(true);
+
+      setModalTitle('Creando nuevo menú');
+
+      setmodalContent(<AddMenuWebForm />);
+   };
+
    return (
       <div className='menu-web-list'>
          <div className='menu-web-list__header'>
-            <Button type='primary'>Menu</Button>
+            <Button type='primary' onClick={addMenuWebModal}>
+               Crear menú
+            </Button>
          </div>
 
          <div className='menu-web-list__items'>
             <DragSortableList items={listItems} onSort={onSort} type='vertical' />
          </div>
+
+         <Modal title={modalTitle} isVisible={isVisibleModal} setIsVisible={setIsVisibleModal}>
+            {modalContent}
+         </Modal>
       </div>
    );
 };
