@@ -9,6 +9,7 @@ import { getAccessTokenApi } from 'api/auth';
 
 import './MenuWebList.scss';
 import AddMenuWebForm from '../AddMenuWebForm';
+import EditMenuWebForm from '../EditMenuWebForm';
 
 const { confirm } = ModalAnrd;
 
@@ -32,12 +33,14 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
                   //
                   item={item}
                   activateMenu={activateMenu}
+                  editMenuWebModal={editMenuWebModal}
                />
             ),
          });
       });
 
       setListItems(listItemArray);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [menu]);
 
    const activateMenu = (menu, status) => {
@@ -78,6 +81,20 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
             //
             setIsVisibleModal={setIsVisibleModal}
             setReloadMenuWeb={setReloadMenuWeb}
+         />
+      );
+   };
+
+   const editMenuWebModal = (menu) => {
+      setIsVisibleModal(true);
+
+      setModalTitle(`Editando menu: ${menu.title}`);
+      setmodalContent(
+         <EditMenuWebForm
+            //
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadMenuWeb={setReloadMenuWeb}
+            menu={menu}
          />
       );
    };
