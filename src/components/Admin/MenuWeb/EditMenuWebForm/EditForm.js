@@ -1,17 +1,17 @@
 import React from 'react';
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { FontSizeOutlined, LinkOutlined } from '@ant-design/icons';
 
-export const EditForm = ({ menuWebData, setMenuWebData, editMenu, menu }) => {
+export const EditForm = ({ menuWebData, setMenuWebData, editMenu }) => {
    return (
-      <Form className='form-edit'>
+      <Form className='form-edit' onFinish={editMenu}>
          <Form.Item>
             <Input
                //
                prefix={<FontSizeOutlined />}
                placeholder='Titulo'
-               //   value={}
-               // onChange={}
+               value={menuWebData.title}
+               onChange={(e) => setMenuWebData({ ...menuWebData, title: e.target.value })}
             />
          </Form.Item>
 
@@ -20,8 +20,8 @@ export const EditForm = ({ menuWebData, setMenuWebData, editMenu, menu }) => {
                //
                prefix={<LinkOutlined />}
                placeholder='URL'
-               //   value={}
-               // onChange={}
+               value={menuWebData.url}
+               onChange={(e) => setMenuWebData({ ...menuWebData, url: e.target.value })}
             />
          </Form.Item>
 
@@ -32,7 +32,7 @@ export const EditForm = ({ menuWebData, setMenuWebData, editMenu, menu }) => {
                htmlType='submit'
                className='btn-submit'
             >
-               Actualizar menús
+               Actualizar menú
             </Button>
          </Form.Item>
       </Form>
