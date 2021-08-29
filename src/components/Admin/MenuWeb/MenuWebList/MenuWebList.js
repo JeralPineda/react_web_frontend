@@ -21,7 +21,7 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
    // Titulo del modal
    const [modalTitle, setModalTitle] = useState('');
 
-   const [modalContent, setmodalContent] = useState(null);
+   const [modalContent, setModalContent] = useState(null);
 
    useEffect(() => {
       const listItemArray = [];
@@ -77,7 +77,7 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
 
       setModalTitle('Creando nuevo menú');
 
-      setmodalContent(
+      setModalContent(
          <AddMenuWebForm
             //
             setIsVisibleModal={setIsVisibleModal}
@@ -90,7 +90,7 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
       setIsVisibleModal(true);
 
       setModalTitle(`Editando menu: ${menu.title}`);
-      setmodalContent(
+      setModalContent(
          <EditMenuWebForm
             //
             setIsVisibleModal={setIsVisibleModal}
