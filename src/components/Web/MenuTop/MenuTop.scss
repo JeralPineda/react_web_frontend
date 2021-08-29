@@ -1,6 +1,6 @@
 @import '../../../scss/index.scss';
 
-.menu-top {
+.menu-topp {
    position: sticky;
    top: 0;
    background-color: $background-dark-web;
@@ -25,7 +25,7 @@
       padding: 10px;
 
       img {
-         width: 200px;
+         width: 40px;
       }
    }
 }
