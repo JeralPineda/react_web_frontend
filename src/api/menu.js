@@ -86,3 +86,26 @@ export const addMenuApi = (token, menu) => {
          return err.message;
       });
 };
+
+export const deleteMenuApi = (token, menuId) => {
+   const url = `${basePath}/${apiVersion}/menu/delete-menu/${menuId}`;
+
+   const params = {
+      method: 'DELETE',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result.msg;
+      })
+      .catch((error) => {
+         return error.msg;
+      });
+};
