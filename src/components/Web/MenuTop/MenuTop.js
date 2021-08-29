@@ -6,6 +6,7 @@ import LogoWeb from '../../../assets/img/png/logo192.png';
 import { getMenuApi } from 'api/menu';
 
 import './MenuTop.scss';
+import SocialLinks from '../SocialLinks';
 
 const MenuTop = () => {
    const [menuData, setMenuData] = useState([]);
@@ -55,7 +56,7 @@ const MenuTop = () => {
             );
          })}
 
-         <div>Social Media..</div>
+         <SocialLinks />
       </Menu>
    );
 };
