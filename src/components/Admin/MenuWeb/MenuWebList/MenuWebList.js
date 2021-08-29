@@ -4,7 +4,7 @@ import DragSortableList from 'react-drag-sortable';
 
 import Modal from 'components/Modal';
 import { MenuItem } from './MenuItem';
-import { activateMenuApi, updateMenuApi } from 'api/menu';
+import { activateMenuApi, deleteMenuApi, updateMenuApi } from 'api/menu';
 import { getAccessTokenApi } from 'api/auth';
 
 import './MenuWebList.scss';
@@ -34,6 +34,7 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
                   item={item}
                   activateMenu={activateMenu}
                   editMenuWebModal={editMenuWebModal}
+                  deleteMenu={deleteMenu}
                />
             ),
          });
@@ -97,6 +98,33 @@ const MenuWebList = ({ menu, setReloadMenuWeb }) => {
             menu={menu}
          />
       );
+   };
+
+   const deleteMenu = (menu) => {
+      const accessToken = getAccessTokenApi();
+
+      confirm({
+         title: 'Eliminando menu',
+         content: `¿Estas seguro de que quieres eliminar el menu ${menu.title}?`,
+         okText: 'Eliminar',
+         okType: 'danger',
+         cancelText: 'Cancelar',
+         onOk() {
+            deleteMenuApi(accessToken, menu.uid)
+               .then((response) => {
+                  notification['success']({
+                     message: response,
+                  });
+
+                  setReloadMenuWeb(true);
+               })
+               .catch(() => {
+                  notification['error']({
+                     message: 'Error del servidor, inténtelo mas tarde',
+                  });
+               });
+         },
+      });
    };
 
    return (

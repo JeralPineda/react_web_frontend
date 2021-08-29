@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, List, Switch } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
-export const MenuItem = ({ item, activateMenu, editMenuWebModal }) => {
+export const MenuItem = ({ item, activateMenu, editMenuWebModal, deleteMenu }) => {
    const handledActivate = (e) => {
       activateMenu(item, e);
    };
@@ -19,7 +19,7 @@ export const MenuItem = ({ item, activateMenu, editMenuWebModal }) => {
             <Button type='primary' onClick={() => editMenuWebModal(item)}>
                <EditOutlined />
             </Button>,
-            <Button type='danger'>
+            <Button type='danger' onClick={() => deleteMenu(item)}>
                <DeleteOutlined />
             </Button>,
          ]}
