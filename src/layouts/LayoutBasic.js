@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Layout, Row, Col } from 'antd';
 
-import './LayoutBasic.scss';
 import MenuTop from 'components/Web/MenuTop';
+
+import './LayoutBasic.scss';
 
 const LayoutBasic = ({ routes }) => {
    const { Footer } = Layout;
