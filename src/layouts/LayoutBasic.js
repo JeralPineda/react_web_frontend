@@ -10,15 +10,18 @@ const LayoutBasic = ({ routes }) => {
    const { Footer } = Layout;
 
    return (
-      <Row>
-         <Col md={4}></Col>
-         <Col md={16}>
-            <MenuTop />
-            <LoadRoutes routes={routes} />
-            <Footer>Jeral Pineda</Footer>
-         </Col>
-         <Col md={4}></Col>
-      </Row>
+      <>
+         <Row>
+            <Col md={4} />
+            <Col md={16}>
+               <MenuTop />
+            </Col>
+            <Col md={4} />
+         </Row>
+
+         <LoadRoutes routes={routes} />
+         <Footer>Jeral Pineda</Footer>
+      </>
    );
 };
 
