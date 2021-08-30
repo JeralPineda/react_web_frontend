@@ -8,6 +8,10 @@
    display: flex;
    align-items: center;
 
+   .ant-menu-submenu-title {
+      display: none;
+   }
+
    li {
       border: 0 !important;
 
