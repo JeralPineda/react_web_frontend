@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
 import MenuTop from 'components/Web/MenuTop';
 
 import './LayoutBasic.scss';
+import Footer from 'components/Web/Footer';
 
 const LayoutBasic = ({ routes }) => {
-   const { Footer } = Layout;
-
    return (
       <>
          <Row>
@@ -20,7 +19,7 @@ const LayoutBasic = ({ routes }) => {
          </Row>
 
          <LoadRoutes routes={routes} />
-         <Footer>Jeral Pineda</Footer>
+         <Footer />
       </>
    );
 };
