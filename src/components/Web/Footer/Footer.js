@@ -3,6 +3,7 @@ import React from 'react';
 
 import MyInfo from './MyInfo';
 import NavigationFooter from './NavigationFooter';
+import NewsLetter from './NewsLetter';
 
 import './Footer.scss';
 
@@ -21,7 +22,9 @@ const Footer = () => {
                   <Col md={8}>
                      <NavigationFooter />
                   </Col>
-                  <Col md={8}>NewsLetter</Col>
+                  <Col md={8}>
+                     <NewsLetter />
+                  </Col>
                </Row>
                <Row className='footer__copyright'>
                   <Col md={12}>2021 ALL RIGHTS RESERVED</Col>
