@@ -6,7 +6,7 @@ export const RenderListLeft = () => {
    return (
       <ul>
          <li>
-            <a href='#'>
+            <a href='/'>
                <BookOutlined /> Cursos online
             </a>
          </li>
@@ -16,12 +16,12 @@ export const RenderListLeft = () => {
             </Link>
          </li>
          <li>
-            <a href='#'>
+            <a href='/'>
                <DatabaseOutlined /> Base de datos
             </a>
          </li>
          <li>
-            <a href='#'>
+            <a href='/'>
                <RightOutlined /> Política de privacidad
             </a>
          </li>
