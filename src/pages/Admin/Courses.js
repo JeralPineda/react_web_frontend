@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCoursesApi } from 'api/courses';
+import CoursesList from 'components/Admin/Courses/CoursesList';
 
 const Courses = () => {
    const [courses, setCourses] = useState([]);
@@ -15,7 +16,7 @@ const Courses = () => {
 
    return (
       <div className='courses'>
-         <h1>Administrar cursos</h1>
+         <CoursesList courses={courses} setReloadCourses={setReloadCourses} />
       </div>
    );
 };
