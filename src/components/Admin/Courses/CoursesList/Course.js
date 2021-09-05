@@ -4,7 +4,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 import { getCourseDataUdemyApi } from 'api/courses';
 
-export const Course = ({ course }) => {
+export const Course = ({ course, deleteCourse }) => {
    const [courseData, setCourseData] = useState(null);
 
    useEffect(() => {
@@ -37,7 +37,7 @@ export const Course = ({ course }) => {
             <Button
                //
                type='danger'
-               onClick={() => console.log('Eliminar curso')}
+               onClick={() => deleteCourse(course)}
             >
                <DeleteOutlined />
             </Button>,

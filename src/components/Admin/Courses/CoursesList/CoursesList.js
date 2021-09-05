@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { List, Button, Modal as ModalAntd, notification } from 'antd';
 import DragSortableList from 'react-drag-sortable';
 
-import { getCourseDataUdemyApi } from 'api/courses';
+import { deleteCourseApi, getCourseDataUdemyApi } from 'api/courses';
 import Modal from 'components/Modal';
 import { Course } from './Course';
+import { getAccessTokenApi } from 'api/auth';
 
 import './CoursesList.scss';
 
@@ -20,7 +21,13 @@ const CoursesList = ({ courses, setReloadCourses }) => {
       const listCourseArray = [];
       courses.forEach((course) => {
          listCourseArray.push({
-            content: <Course course={course} />,
+            content: (
+               <Course
+                  //
+                  course={course}
+                  deleteCourse={deleteCourse}
+               />
+            ),
          });
       });
       setListCourses(listCourseArray);
@@ -31,13 +38,32 @@ const CoursesList = ({ courses, setReloadCourses }) => {
       console.log(sortedList);
    };
 
-   if (courses.length > 0) {
-      courses.forEach((course) => {
-         getCourseDataUdemyApi(course.idCourse).then((response) => {
-            console.log(response);
-         });
+   const deleteCourse = (course) => {
+      const accesToken = getAccessTokenApi();
+
+      confirm({
+         title: 'Eliminando curso',
+         content: `¿Estas seguro de que quieres eliminar el curso ${course.idCourse}?`,
+         okText: 'Eliminar',
+         okType: 'danger',
+         cancelText: 'Cancelar',
+         onOk() {
+            deleteCourseApi(accesToken, course.uid)
+               .then((response) => {
+                  const typeNotification = response.code === 200 ? 'success' : 'warning';
+                  notification[typeNotification]({
+                     message: response.msg,
+                  });
+                  setReloadCourses(true);
+               })
+               .catch(() => {
+                  notification['error']({
+                     message: 'Error del servidor, intentelo más tarde.',
+                  });
+               });
+         },
       });
-   }
+   };
 
    return (
       <div className='courses-list'>
