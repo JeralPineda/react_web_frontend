@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { List, Button, Modal as ModalAntd, notification } from 'antd';
+import { List, Button, notification } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 import { getCourseDataUdemyApi } from 'api/courses';
-import Modal from 'components/Modal';
 
 export const Course = ({ course }) => {
    const [courseData, setCourseData] = useState(null);
