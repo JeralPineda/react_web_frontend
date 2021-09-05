@@ -6,6 +6,8 @@ import { getCourseDataUdemyApi } from 'api/courses';
 export const Course = ({ course }) => {
    const [courseInfo, setCourseInfo] = useState({});
 
+   const [urlCourse, setUrlCourse] = useState('');
+
    const { Meta } = Card;
 
    useEffect(() => {
@@ -17,6 +19,7 @@ export const Course = ({ course }) => {
                });
             } else {
                setCourseInfo(response.data);
+               mountUrl(response.data.url);
             }
          })
          .catch(() => {
@@ -26,8 +29,18 @@ export const Course = ({ course }) => {
          });
    }, [course]);
 
+   const mountUrl = (url) => {
+      if (!course.link) {
+         const baseUrl = `https://www.udemy.com${url}`;
+         const finalUrl = baseUrl + (course.coupon ? `?couponCode=${course.coupon}` : '');
+         setUrlCourse(finalUrl);
+      } else {
+         setUrlCourse(course.link);
+      }
+   };
+
    return (
-      <a href='#' target='_blank' rel='noopener noreferrer'>
+      <a href={urlCourse} target='_blank' rel='noopener noreferrer'>
          <Card
             //
             cover={<img src={courseInfo.image_480x270} alt={courseInfo.title} />}
