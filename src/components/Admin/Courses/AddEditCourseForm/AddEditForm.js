@@ -31,8 +31,8 @@ export const AddEditForm = ({ course, addCourse, updateCourse, courseData, setCo
                //
                prefix={<GiftOutlined />}
                placeholder='Cupon de descuento'
-               value={courseData.cupon}
-               onChange={(e) => setCourseData({ ...courseData, cupon: e.target.value })}
+               value={courseData.coupon}
+               onChange={(e) => setCourseData({ ...courseData, coupon: e.target.value })}
             />
          </Form.Item>
 
