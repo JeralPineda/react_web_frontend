@@ -2,7 +2,8 @@ import React from 'react';
 
 import './CoursesList.scss';
 
-const CoursesList = () => {
+const CoursesList = ({ courses }) => {
+   console.log(courses);
    return (
       <div>
          <h1>CoursesList</h1>
