@@ -27,6 +27,7 @@ const CoursesList = ({ courses, setReloadCourses }) => {
                   //
                   course={course}
                   deleteCourse={deleteCourse}
+                  editCourseModal={editCourseModal}
                />
             ),
          });
@@ -74,6 +75,19 @@ const CoursesList = ({ courses, setReloadCourses }) => {
             //
             setIsVisibleModal={setIsVisibleModal}
             setReloadCourses={setReloadCourses}
+         />
+      );
+   };
+
+   const editCourseModal = (course) => {
+      setIsVisibleModal(true);
+      setModalTitle('Actualizando curso');
+      setModalContent(
+         <AddEditCourseForm
+            //
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadCourses={setReloadCourses}
+            course={course}
          />
       );
    };

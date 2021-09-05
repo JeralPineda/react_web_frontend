@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, notification } from 'antd';
+import { notification } from 'antd';
 
 import { getAccessTokenApi } from 'api/auth';
 import { AddEditForm } from './AddEditForm';
 
 import './AddEditCourseForm.scss';
-import { addCourseApi } from 'api/courses';
+import { addCourseApi, updateCourseApi } from 'api/courses';
 
 const AddEditCourseForm = ({ setIsVisibleModal, setReloadCourses, course }) => {
    const [courseData, setCourseData] = useState({});
@@ -41,7 +41,23 @@ const AddEditCourseForm = ({ setIsVisibleModal, setReloadCourses, course }) => {
    };
 
    const updateCourse = () => {
-      console.log('Actualizando curso');
+      const accessToken = getAccessTokenApi();
+
+      updateCourseApi(accessToken, course.uid, courseData)
+         .then((response) => {
+            const typeNotification = response.code === 200 ? 'success' : 'warning';
+            notification[typeNotification]({
+               message: response.msg,
+            });
+            setIsVisibleModal(false);
+            setReloadCourses(true);
+            setCourseData({});
+         })
+         .catch(() => {
+            notification['error']({
+               message: 'Error del servidor, intentelo más tarde.',
+            });
+         });
    };
 
    return (
