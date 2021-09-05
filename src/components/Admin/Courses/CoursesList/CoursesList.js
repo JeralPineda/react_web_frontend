@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { List, Button, Modal as ModalAntd, notification } from 'antd';
+import { Button, Modal as ModalAntd, notification } from 'antd';
 import DragSortableList from 'react-drag-sortable';
 
-import { deleteCourseApi, getCourseDataUdemyApi } from 'api/courses';
+import { deleteCourseApi } from 'api/courses';
 import Modal from 'components/Modal';
 import { Course } from './Course';
 import { getAccessTokenApi } from 'api/auth';
 
 import './CoursesList.scss';
+import AddEditCourseForm from '../AddEditCourseForm';
 
 const { confirm } = ModalAntd;
 
@@ -65,10 +66,22 @@ const CoursesList = ({ courses, setReloadCourses }) => {
       });
    };
 
+   const addCourseModal = () => {
+      setIsVisibleModal(true);
+      setModalTitle('Creando nuevo curso');
+      setModalContent(
+         <AddEditCourseForm
+            //
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadCourses={setReloadCourses}
+         />
+      );
+   };
+
    return (
       <div className='courses-list'>
          <div className='courses-list__header'>
-            <Button type='primary' onClick={() => console.log('Creando curso')}>
+            <Button type='primary' onClick={addCourseModal}>
                Nuevo curso
             </Button>
          </div>
@@ -84,6 +97,15 @@ const CoursesList = ({ courses, setReloadCourses }) => {
             )}
             <DragSortableList items={listCourses} onSort={onSort} type='vertical' />
          </div>
+
+         <Modal
+            //
+            title={modalTitle}
+            isVisible={isVisibleModal}
+            setIsVisible={setIsVisibleModal}
+         >
+            {modalContent}
+         </Modal>
       </div>
    );
 };
