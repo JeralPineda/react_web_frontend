@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal as ModalAntd, notification } from 'antd';
 import DragSortableList from 'react-drag-sortable';
 
-import { deleteCourseApi } from 'api/courses';
+import { deleteCourseApi, updateCourseApi } from 'api/courses';
 import Modal from 'components/Modal';
 import { Course } from './Course';
 import { getAccessTokenApi } from 'api/auth';
+import AddEditCourseForm from '../AddEditCourseForm';
 
 import './CoursesList.scss';
-import AddEditCourseForm from '../AddEditCourseForm';
 
 const { confirm } = ModalAntd;
 
@@ -37,7 +37,15 @@ const CoursesList = ({ courses, setReloadCourses }) => {
    }, [courses]);
 
    const onSort = (sortedList, dropEvent) => {
-      console.log(sortedList);
+      const accessToken = getAccessTokenApi();
+
+      sortedList.forEach((item) => {
+         const { uid } = item.content.props.course;
+
+         const order = item.rank;
+
+         updateCourseApi(accessToken, uid, { order });
+      });
    };
 
    const deleteCourse = (course) => {
