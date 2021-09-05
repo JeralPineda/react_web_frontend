@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Card, Button, Rate, notification } from 'antd';
+import React from 'react';
+import { Row, Col } from 'antd';
 
-import { getCourseDataUdemyApi } from 'api/courses';
 import { Course } from './Course';
 
 import './CoursesList.scss';
