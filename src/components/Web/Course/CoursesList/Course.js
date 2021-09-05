@@ -27,6 +27,7 @@ export const Course = ({ course }) => {
                message: 'Error del servidor',
             });
          });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [course]);
 
    const mountUrl = (url) => {
