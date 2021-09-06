@@ -43,7 +43,7 @@ const LayoutAdmin = ({ routes }) => {
                   <LoadRoutes routes={routes} />
                </Content>
 
-               <Footer className='layout-admin__footer'>Footer</Footer>
+               <Footer className='layout-admin__footer'>Jeral Pineda</Footer>
             </Layout>
          </Layout>
       );
