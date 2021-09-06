@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 
 import Modal from 'components/Modal';
 import { getPostApi } from 'api/post';
+import PostsList from 'components/Admin/Blog/PostsList';
 
 import './Blog.scss';
 
@@ -16,8 +17,6 @@ const Blog = ({ location, history }) => {
    const [modalContent, setModalContent] = useState(null);
 
    const { page = 1 } = queryString.parse(location.search);
-
-   console.log(posts);
 
    useEffect(() => {
       getPostApi(12, page)
@@ -38,13 +37,18 @@ const Blog = ({ location, history }) => {
 
       setReloadPosts(false);
    }, [page, reloadPosts]);
+
+   if (!posts) {
+      return null;
+   }
+
    return (
       <div className='blog'>
          <div className='blog__add-post'>
             <Button type='primary'>Nuevo post</Button>
          </div>
 
-         <h1>Post list..</h1>
+         <PostsList posts={posts} />
          <h2>Paginacion</h2>
 
          <Modal
