@@ -49,7 +49,12 @@ const Blog = ({ location, history }) => {
             <Button type='primary'>Nuevo post</Button>
          </div>
 
-         <PostsList posts={posts} />
+         <PostsList
+            //
+            posts={posts}
+            setReloadPosts={setReloadPosts}
+         />
+
          <Pagination
             //
             posts={posts}

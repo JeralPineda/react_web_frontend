@@ -3,7 +3,7 @@ import { Button, List } from 'antd';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
-export const Post = ({ post }) => {
+export const Post = ({ post, deletePost }) => {
    return (
       <List.Item
          //
@@ -26,7 +26,7 @@ export const Post = ({ post }) => {
             <Button
                //
                type='danger'
-               // onClick={}
+               onClick={() => deletePost(post)}
             >
                <DeleteOutlined />
             </Button>,
