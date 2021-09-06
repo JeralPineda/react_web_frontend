@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import Modal from 'components/Modal';
 import { getPostApi } from 'api/post';
 import PostsList from 'components/Admin/Blog/PostsList';
+import Pagination from 'components/Pagination';
 
 import './Blog.scss';
 
@@ -19,7 +20,7 @@ const Blog = ({ location, history }) => {
    const { page = 1 } = queryString.parse(location.search);
 
    useEffect(() => {
-      getPostApi(12, page)
+      getPostApi(10, page)
          .then((response) => {
             if (response?.code !== 200) {
                notification['warning']({
@@ -49,7 +50,12 @@ const Blog = ({ location, history }) => {
          </div>
 
          <PostsList posts={posts} />
-         <h2>Paginacion</h2>
+         <Pagination
+            //
+            posts={posts}
+            location={location}
+            history={history}
+         />
 
          <Modal
             //
