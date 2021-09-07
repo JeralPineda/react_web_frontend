@@ -61,3 +61,27 @@ export const addPostApi = (token, post) => {
          return err;
       });
 };
+
+export const updatePostApi = (token, id, post) => {
+   const url = `${basePath}/${apiVersion}/post/update-post/${id}`;
+
+   const params = {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify(post),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err;
+      });
+};
