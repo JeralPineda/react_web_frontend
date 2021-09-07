@@ -53,6 +53,19 @@ const Blog = ({ location, history }) => {
       );
    };
 
+   const editPost = (post) => {
+      setIsVisibleModal(true);
+      setModalTitle('Editar post');
+      setModalContent(
+         <AddEditPostForm
+            //
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadPosts={setReloadPosts}
+            post={post}
+         />
+      );
+   };
+
    if (!posts) {
       return null;
    }
@@ -69,6 +82,7 @@ const Blog = ({ location, history }) => {
             //
             posts={posts}
             setReloadPosts={setReloadPosts}
+            editPost={editPost}
          />
 
          <Pagination

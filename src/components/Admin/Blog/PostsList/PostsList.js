@@ -9,7 +9,7 @@ import { deletePostApi } from 'api/post';
 
 const { confirm } = Modal;
 
-const PostsList = ({ posts, setReloadPosts }) => {
+const PostsList = ({ posts, setReloadPosts, editPost }) => {
    const deletePost = (post) => {
       const accessToken = getAccessTokenApi();
 
@@ -49,6 +49,7 @@ const PostsList = ({ posts, setReloadPosts }) => {
                   //
                   post={post}
                   deletePost={deletePost}
+                  editPost={editPost}
                />
             )}
          />
