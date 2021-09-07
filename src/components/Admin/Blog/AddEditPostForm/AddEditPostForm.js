@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row, Form, Input, Button, DatePicker, notification } from 'antd';
-import { Editor } from '@tinymce/tinymce-react';
+import { notification } from 'antd';
+
+import { getAccessTokenApi } from 'api/auth';
+import { AddEditForm } from './AddEditForm';
 
 import './AddEditPostForm.scss';
 
 const AddEditPostForm = ({ setIsVisibleModal, setReloadPosts, post }) => {
+   const [postData, setPostData] = useState({});
+
+   useEffect(() => {
+      if (post) {
+         setPostData(post);
+      } else {
+         setPostData({});
+      }
+   }, [post]);
+
    return (
-      <div>
-         <h1>AddEditPostForm</h1>
+      <div className='add-edit-post-form'>
+         <AddEditForm
+            //
+            postData={postData}
+            setPostData={setPostData}
+            post={post}
+         />
       </div>
    );
 };
