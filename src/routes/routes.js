@@ -86,6 +86,11 @@ const routes = [
             exact: true,
          },
          {
+            path: '/blog/:url',
+            component: Blog,
+            exact: true,
+         },
+         {
             component: Error404,
          },
       ],
