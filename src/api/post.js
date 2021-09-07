@@ -85,3 +85,18 @@ export const updatePostApi = (token, id, post) => {
          return err;
       });
 };
+
+export const getPostApi = (urlPost) => {
+   const url = `${basePath}/${apiVersion}/post/get-post/${urlPost}`;
+
+   return fetch(url)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err;
+      });
+};
