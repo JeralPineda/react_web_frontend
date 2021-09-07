@@ -12,7 +12,7 @@ const AddEditPostForm = ({ setIsVisibleModal, setReloadPosts, post }) => {
 
    useEffect(() => {
       if (post) {
-         setPostData();
+         setPostData(post);
       } else {
          setPostData({});
       }
