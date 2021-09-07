@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router';
 
 import Modal from 'components/Modal';
-import { getPostApi } from 'api/post';
+import { getPostsApi } from 'api/post';
 import PostsList from 'components/Admin/Blog/PostsList';
 import Pagination from 'components/Pagination';
 import AddEditPostForm from 'components/Admin/Blog/AddEditPostForm';
@@ -21,7 +21,7 @@ const Blog = ({ location, history }) => {
    const { page = 1 } = queryString.parse(location.search);
 
    useEffect(() => {
-      getPostApi(10, page)
+      getPostsApi(10, page)
          .then((response) => {
             if (response?.code !== 200) {
                notification['warning']({
