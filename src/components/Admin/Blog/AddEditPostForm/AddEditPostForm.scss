@@ -1,4 +1,7 @@
 @import '../../../../scss/index.scss';
 
 .add-edit-post-form {
+   .ant-form-inline {
+      display: block !important;
+   }
 }
