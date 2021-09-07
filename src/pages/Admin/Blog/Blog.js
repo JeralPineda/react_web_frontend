@@ -7,6 +7,7 @@ import Modal from 'components/Modal';
 import { getPostApi } from 'api/post';
 import PostsList from 'components/Admin/Blog/PostsList';
 import Pagination from 'components/Pagination';
+import AddEditPostForm from 'components/Admin/Blog/AddEditPostForm';
 
 import './Blog.scss';
 
@@ -39,6 +40,19 @@ const Blog = ({ location, history }) => {
       setReloadPosts(false);
    }, [page, reloadPosts]);
 
+   const addPost = () => {
+      setIsVisibleModal(true);
+      setModalTitle('Creando nuevo post');
+      setModalContent(
+         <AddEditPostForm
+            //
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadPosts={setReloadPosts}
+            post={null}
+         />
+      );
+   };
+
    if (!posts) {
       return null;
    }
@@ -46,7 +60,9 @@ const Blog = ({ location, history }) => {
    return (
       <div className='blog'>
          <div className='blog__add-post'>
-            <Button type='primary'>Nuevo post</Button>
+            <Button type='primary' onClick={addPost}>
+               Nuevo post
+            </Button>
          </div>
 
          <PostsList
@@ -68,7 +84,9 @@ const Blog = ({ location, history }) => {
             isVisible={isVisibleModal}
             setIsVisible={setIsVisibleModal}
             width='75%'
-         />
+         >
+            {modalContent}
+         </Modal>
       </div>
    );
 };
