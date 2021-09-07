@@ -14,6 +14,7 @@ import AdminBlog from 'pages/Admin/Blog';
 import Home from 'pages/Home';
 import Contact from 'pages/Contact';
 import { Courses } from 'pages/Courses';
+import { Blog } from 'pages/Blog';
 
 // Others
 import Error404 from 'pages/Error404'; //siempre en la ultima posición
@@ -77,6 +78,11 @@ const routes = [
          {
             path: '/courses',
             component: Courses,
+            exact: true,
+         },
+         {
+            path: '/blog',
+            component: Blog,
             exact: true,
          },
          {
