@@ -37,3 +37,27 @@ export const deletePostApi = (token, id) => {
          return err;
       });
 };
+
+export const addPostApi = (token, post) => {
+   const url = `${basePath}/${apiVersion}/post/add-post`;
+
+   const params = {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+         'x-token': `Bearer ${token}`,
+      },
+      body: JSON.stringify(post),
+   };
+
+   return fetch(url, params)
+      .then((response) => {
+         return response.json();
+      })
+      .then((result) => {
+         return result;
+      })
+      .catch((err) => {
+         return err;
+      });
+};
