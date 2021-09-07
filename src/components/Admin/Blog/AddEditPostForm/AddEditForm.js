@@ -4,12 +4,13 @@ import { FontSizeOutlined, LinkOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import { Editor } from '@tinymce/tinymce-react';
 
-export const AddEditForm = ({ postData, setPostData, post }) => {
+export const AddEditForm = ({ postData, setPostData, post, processPost }) => {
    return (
       <Form
          //
          className='add-edit-post-form'
          layout={'inline'}
+         onFinish={processPost}
       >
          <Row gutter={24}>
             <Col span={8}>
@@ -17,8 +18,8 @@ export const AddEditForm = ({ postData, setPostData, post }) => {
                   //
                   prefix={<FontSizeOutlined />}
                   placeholder='Titulo'
-                  //   value={}
-                  // onChange={}
+                  value={postData.title}
+                  onChange={(e) => setPostData({ ...postData, title: e.target.value })}
                />
             </Col>
 
@@ -27,8 +28,13 @@ export const AddEditForm = ({ postData, setPostData, post }) => {
                   //
                   prefix={<LinkOutlined />}
                   placeholder='url'
-                  //   value={}
-                  // onChange={}
+                  value={postData.url}
+                  onChange={(e) =>
+                     setPostData({
+                        ...postData,
+                        url: transformTextUrl(e.target.value),
+                     })
+                  }
                />
             </Col>
 
@@ -38,16 +44,20 @@ export const AddEditForm = ({ postData, setPostData, post }) => {
                   style={{ width: '100%' }}
                   format='DD/MM/YYYY HH:mm:ss'
                   placeholder='Fecha de publicacion'
-                  //   value={}
-                  // onChange={}
+                  value={postData.date && moment(postData.date)}
+                  onChange={(e, value) =>
+                     setPostData({
+                        ...postData,
+                        date: moment(value, 'DD/MM/YYYY HH:mm:ss').toISOString(),
+                     })
+                  }
                />
             </Col>
          </Row>
 
          <Editor
-            // onInit={(evt, editor) => (editorRef.current = editor)}
-            // initialValue='<p>This is the initial content of the editor.</p>'
-            value=''
+            onBlur={(e) => setPostData({ ...postData, description: e.target.getContent() })}
+            initialValue={postData.description ? postData.description : ''}
             init={{
                height: 400,
                menubar: true,
@@ -63,3 +73,9 @@ export const AddEditForm = ({ postData, setPostData, post }) => {
       </Form>
    );
 };
+
+function transformTextUrl(text) {
+   const url = text.replace(' ', '-');
+
+   return url.toLowerCase();
+}
