@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/es';
 import queryString from 'query-string';
+import { Helmet } from 'react-helmet';
+
 import Pagination from 'components/Pagination';
 import { getPostsApi } from 'api/post';
 
@@ -67,16 +69,22 @@ function Post({ post }) {
    const month = moment(post.date).format('MMMM');
 
    return (
-      <List.Item className='post'>
-         <div className='post__date'>
-            <span>{day}</span>
-            <span>{month}</span>
-         </div>
+      <>
+         <Helmet>
+            <title>Blog | Jeral Pineda</title>
+         </Helmet>
 
-         {/* <Link to={`blog/${post.url}`}> */}
-         <List.Item.Meta title={<Link to={`blog/${post.url}`}>{post.title}</Link>} />
-         {/* </Link> */}
-      </List.Item>
+         <List.Item className='post'>
+            <div className='post__date'>
+               <span>{day}</span>
+               <span>{month}</span>
+            </div>
+
+            {/* <Link to={`blog/${post.url}`}> */}
+            <List.Item.Meta title={<Link to={`blog/${post.url}`}>{post.title}</Link>} />
+            {/* </Link> */}
+         </List.Item>
+      </>
    );
 }
 

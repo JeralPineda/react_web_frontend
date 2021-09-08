@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Spin, notification } from 'antd';
+import { Helmet } from 'react-helmet';
 
 import PresentationCourses from 'components/Web/Course/PresentationCourses';
 import CoursesList from 'components/Web/Course/CoursesList';
@@ -27,22 +28,28 @@ export const Courses = () => {
    }, []);
 
    return (
-      <Row>
-         <Col md={4} />
-         <Col md={16}>
-            <PresentationCourses />
+      <>
+         <Helmet>
+            <title>Cursos | Jeral Pineda</title>
+         </Helmet>
 
-            {!courses ? (
-               <Spin
-                  //
-                  tip='Cargando cursos'
-                  style={{ textAlign: 'center', width: '100%', padding: '20px' }}
-               />
-            ) : (
-               <CoursesList courses={courses} />
-            )}
-         </Col>
-         <Col md={4} />
-      </Row>
+         <Row>
+            <Col md={4} />
+            <Col md={16}>
+               <PresentationCourses />
+
+               {!courses ? (
+                  <Spin
+                     //
+                     tip='Cargando cursos'
+                     style={{ textAlign: 'center', width: '100%', padding: '20px' }}
+                  />
+               ) : (
+                  <CoursesList courses={courses} />
+               )}
+            </Col>
+            <Col md={4} />
+         </Row>
+      </>
    );
 };
