@@ -32,6 +32,7 @@ const MenuTop = () => {
          <Menu.Item className='menu-top-web__logo'>
             <Link to={'/'}>
                <img src={LogoWeb} alt='Jeral Pineda' />
+               <h2 className='menu-top-web__logo-jeral'>JeralPineda</h2>
             </Link>
          </Menu.Item>
 
