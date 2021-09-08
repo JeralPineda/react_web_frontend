@@ -31,6 +31,12 @@ export const Courses = () => {
       <>
          <Helmet>
             <title>Cursos | Jeral Pineda</title>
+            <meta
+               //
+               name='description'
+               content='Cursos | Web sobre programación de Jeral Pineda'
+               data-react-helmet='true'
+            />
          </Helmet>
 
          <Row>

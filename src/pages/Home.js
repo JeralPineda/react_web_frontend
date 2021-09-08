@@ -11,6 +11,12 @@ const Home = () => {
       <>
          <Helmet>
             <title>Jeral Pineda</title>
+            <meta
+               //
+               name='description'
+               content='Home | Web sobre programación Jeral Pineda'
+               data-react-helmet='true'
+            />
          </Helmet>
 
          <MainBanner />
