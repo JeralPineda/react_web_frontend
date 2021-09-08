@@ -13,7 +13,7 @@ export const Blog = ({ location, history }) => {
          <Col md={4} />
          <Col md={16}>
             {url ? (
-               <PostInfo />
+               <PostInfo url={url} />
             ) : (
                <PostListWeb
                   //
